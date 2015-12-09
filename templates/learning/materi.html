@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MATERI</title>
+    </head>
+
+    <body>
+        <h1>Kumpulan Materi</h1>
+
+        {% if materi %}
+            <ul>
+                {% for m in materi %}
+                <li>
+                    <h2><a href="/learning/materi/{{ m.slug }}/">{{ m.judul_materi }}</a></h2>
+		<p> {{ m.deskripsi|safe }} 	</p>
+               </li> 
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>Tidak ada materi yang tersedia.</strong>
+        {% endif %}
+
+        <!--<a href="/learning/about/">About</a>-->
+    </body>
+</html>

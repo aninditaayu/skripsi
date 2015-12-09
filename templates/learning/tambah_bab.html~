@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Python bersama Tyto</title>
+    </head>
+
+    <body>
+        <h1>Tambah Bab Baru</h1>
+
+        <form id="bab_form" method="post" action="/learning/tambah_bab/">
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+
+            <input tipe="submit" name="submit" value="Buat bab baru" />
+        </form>
+    </body>
+
+</html>

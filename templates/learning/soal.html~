@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SOAL</title>
+    </head>
+
+    <body>
+        <h1>Kumpulan Soal</h1>
+
+        {% if soal %}
+            <ul>
+                {% for s in soal %}
+                <li>
+                    <h2><a href="/learning/soal/{{ s.slug }}/">{{ s.judul_soal }}</a></h2>
+		<p> {{ s.deskripsi_soal|safe }}</p>
+		<p> {{ s.instruksi|safe }}</p>
+		<p> {{ s.hint|safe }}</p>
+                
+               </li> 
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>Tidak ada materi yang tersedia.</strong>
+        {% endif %}
+
+        <!--<a href="/learning/about/">About</a>-->
+    </body>
+</html>

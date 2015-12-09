@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>learning</title>
+    </head>
+
+    <body>
+        <h1>Tyto says...hello world!</h1>
+
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                <li>{{ category.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+
+        <a href="/learning/about/">About</a>
+        <a href="/learning/tambah_bab/">Tambah Bab Baru</a><br />
+    </body>
+</html>
