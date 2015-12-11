@@ -2,6 +2,22 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+
+#User profile
+class UserProfile(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+
+    # The additional attributes we wish to include.
+    deskripsi_diri = models.TextField(blank=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+
+    # Override the __unicode__() method to return out something meaningful!
+    def __unicode__(self):
+        return self.user.username
+
+
+#Bab
 class Bab(models.Model):
     nama = models.CharField(max_length=128, unique=True)
     deskripsi = models.TextField(null=True)
@@ -17,7 +33,7 @@ class Bab(models.Model):
     class Meta:
         verbose_name_plural = "Bab"
 
-
+#Materi
 class Materi(models.Model):
     bab = models.ForeignKey(Bab, related_name="materi")
     judul_materi = models.CharField(max_length=128)
@@ -32,7 +48,7 @@ class Materi(models.Model):
     def __unicode__(self):      #For Python 2, use __str__ on Python 3
         return "{}-{}".format(self.judul_materi, self.bab)
 
-
+#Soal
 class Soal(models.Model):
     materi = models.ForeignKey(Materi)
     judul_soal = models.CharField(max_length=128)
@@ -44,7 +60,7 @@ class Soal(models.Model):
     def __unicode__(self):
         return "{}-{}".format(self.judul_soal, self.materi)
 
-
+#Jawaban
 class Jawaban(models.Model):
     soal = models.ForeignKey(Soal)
     user = models.ForeignKey(User)

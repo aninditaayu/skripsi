@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>BAB</title>
-    </head>
 
-    <body>
-        <h1>Kumpulan Bahasan</h1>
+{% extends 'learning/base.html' %}
 
-        {% if bab %}
+{% load staticfiles %}
+
+{% block title %}{{ nama }}{% endblock %}
+
+{% block body_block %}
+    <h1>{{ nama }}</h1>
+{% if bab %}
             <ul>
                 {% for b in bab %}
                 <li>
                     <h2><a href="/learning/bab/{{ b.slug }}/">{{ b.nama }}</a></h2>
 		<p> {{ b.deskripsi }} 	</p>
                </li> <!-- kasih href buat link-in bab-->
-                {% endfor %}
+       <!--         {% endfor %}
             </ul>
         {% else %}
             <strong>Tidak ada bab yang tersedia.</strong>
         {% endif %}
-
-        <!--<a href="/learning/about/">About</a>-->
-    </body>
-</html>
+{% endblock %}

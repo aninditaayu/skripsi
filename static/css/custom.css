@@ -1,0 +1,325 @@
+body {
+ background-color: #1BBC9B;   
+ font-family: 'Roboto', sans-serif;
+}
+
+/*Navbar*/
+.navbar {
+    border-radius: 0px;
+}
+
+.navbar-brand {
+    font-weight: 600px;
+    text-shadow: 1px 1px 0.5px black;
+}
+
+.glyphicon {
+    color: black;
+}
+
+/*Home*/
+.button-home {
+    margin-bottom: 50px;
+}
+
+/*Login*/
+#login-form {
+    margin-top: 40px;
+}
+
+h1, h3 {
+	font-family: Rokkitt,serif;
+    font-weight: 100;
+    font-size: 30px;
+    color: #FFF;
+}
+
+/*Register*/
+.register {
+    margin-top: 0px;
+}
+
+.input-group {
+    margin: 0px;
+}
+
+/*Materi*/
+.well ul li {
+    list-style: none;
+}
+
+#frontend, #backend {
+  margin-top: 15px;
+}
+
+#materi {
+    margin-top: 50px;
+}
+
+.modal-content img {
+    width: 128px;
+}
+
+.modal-slacker {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
+.modal-slacker .modal-content {
+	margin-top: 5%;
+	border-radius: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	height: 80%;
+	overflow: auto;
+}
+
+.modal-slacker .modal-header .close {
+	color: #fff;
+	background-color: #428bca;
+	border-color: #357ebd;
+	opacity: 1;
+	padding: 10px 17px;
+	font-size: 27px;
+}
+
+.modal-slacker .modal-title {
+	font-size: 34px;
+	font-weight: bold;
+}
+
+@media (min-width: 992px) {
+	.modal-slacker .modal-header,
+	.modal-slacker .modal-body,
+	.modal-slacker .modal-footer {
+		width: 900px;
+	}
+}
+
+@media (min-width: 768px) {
+	.modal-slacker .modal-header,
+	.modal-slacker .modal-body,
+	.modal-slacker .modal-footer {
+		width: 600px;
+		margin: 30px auto;
+	}
+}
+
+/*Mentor*/
+.src-image {
+  display: none;
+}
+
+.card {
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #CCC;
+  border-radius: 8px;
+  text-align: center;
+  padding: 0;
+  background-color: #284c79;
+  color: #fff;
+}
+
+.card .header-bg {
+  /* This stretches the canvas across the entire hero unit */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  /* This positions the canvas under the text */
+  z-index: 1;
+}
+.card .avatar {
+  position: relative;
+  margin-top: 15px;
+  z-index: 100;
+}
+
+.card .avatar img {
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 5px solid rgba(0,0,30,0.8);
+}
+
+/**/
+
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  background-color: #000E18;
+  text-align: center;
+}
+
+footer .fa {
+    color: #FFF;
+    margin-top: 15px;
+    width: 40px;
+    margin-bottom: 0;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+/* Content */
+        #preview-container .content {
+            z-index: 1;
+            color: #FFF;
+            text-align: center;
+        }
+
+        .jumbotron {
+            background-color: inherit;
+        }
+        .jumbotron h1, .jumbotron h2 {
+            color: #FFF;
+        }
+
+        .avatar-holder {
+            overflow: hidden;
+            height: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .avatar-container {
+            padding-top: 50px;
+        }
+
+        .avatar {
+            display: inline-block;
+            position: relative;
+        }
+
+        .avatar img {
+            width: 100px;
+            height: 100px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.8);
+            transition: 0.3s;
+            cursor: pointer;
+
+        }
+
+        .avatar img:hover {
+            border: 5px solid rgba(90,96,200,0.8);
+
+        }
+
+        .avatar-blur {
+            z-index: -2;
+            position: absolute;
+            min-height: 100%;
+            height: auto;
+            display: block;
+            top: 0;
+            max-height: none;
+            /* Add this CSS to remove transparent border around the image */
+            left: -10%;
+            width: 120%;
+        }
+
+        .tinted-thumbnails img{
+            width: 25%;
+            float:left;
+            cursor: pointer;
+        }
+
+        #tinted-holder {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            width:100%;
+        }
+
+        /* Plugin will add this class to blurred image, providing you with control over certain aspects */
+        .tinted-bg-blur {
+            z-index: -2;
+            opacity: 0;
+            position: absolute;
+            min-height: 100%;
+            height: auto;
+            display: block;
+            top: 0;
+            max-height: none;
+            /* Add this CSS to remove transparent border around the image */
+            left: -10%;
+            width: 120%;
+        }
+
+        /*
+            An element with this class is added by the plugin to provide an overlay above the blurred image
+            It could drastically improve the appearance of the blurred image for content readability
+        */
+        .tinted-bg-overlay {
+            z-index: -1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ba43a8+0,ea4fce+62,537bad+100&amp;0.38+0,0.17+61,0.8+100 */
+            /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+            background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYmE0M2E4IiBzdG9wLW9wYWNpdHk9IjAuMzgiLz4KICAgIDxzdG9wIG9mZnNldD0iNjElIiBzdG9wLWNvbG9yPSIjZTk0ZmNkIiBzdG9wLW9wYWNpdHk9IjAuMTciLz4KICAgIDxzdG9wIG9mZnNldD0iNjIlIiBzdG9wLWNvbG9yPSIjZWE0ZmNlIiBzdG9wLW9wYWNpdHk9IjAuMTkiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzUzN2JhZCIgc3RvcC1vcGFjaXR5PSIwLjgiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+            background: -moz-linear-gradient(-45deg,  rgba(186,67,168,0.38) 0%, rgba(233,79,205,0.17) 61%, rgba(234,79,206,0.19) 62%, rgba(83,123,173,0.8) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(186,67,168,0.38)), color-stop(61%,rgba(233,79,205,0.17)), color-stop(62%,rgba(234,79,206,0.19)), color-stop(100%,rgba(83,123,173,0.8))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(-45deg,  rgba(186,67,168,0.38) 0%,rgba(233,79,205,0.17) 61%,rgba(234,79,206,0.19) 62%,rgba(83,123,173,0.8) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(-45deg,  rgba(186,67,168,0.38) 0%,rgba(233,79,205,0.17) 61%,rgba(234,79,206,0.19) 62%,rgba(83,123,173,0.8) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(-45deg,  rgba(186,67,168,0.38) 0%,rgba(233,79,205,0.17) 61%,rgba(234,79,206,0.19) 62%,rgba(83,123,173,0.8) 100%); /* IE10+ */
+            background: linear-gradient(135deg,  rgba(186,67,168,0.38) 0%,rgba(233,79,205,0.17) 61%,rgba(234,79,206,0.19) 62%,rgba(83,123,173,0.8) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#61ba43a8', endColorstr='#cc537bad',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
+
+        }
+
+        .video-bg-container {
+            overflow: hidden;
+            position: relative;
+            width:100%;
+        }
+
+        .video-thumbnails img {
+            width: 25%;
+            float:left;
+            cursor: pointer;
+        }

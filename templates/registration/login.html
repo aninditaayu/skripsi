@@ -1,0 +1,14 @@
+{% extends "learning/base.html" %}
+
+{% block body_block %}
+<h1>Masuk</h1>
+        <form method="post" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <input type="submit" value="Log in" />
+                <input type="hidden" name="next" value="{{ next }}" />
+         </form>
+
+        <p>Belum buat akun?<a href="{% url 'registration_register' %}">Daftar Sekarang</a>!</p>
+{% endblock %}

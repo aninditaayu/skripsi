@@ -1,0 +1,7 @@
+{% extends "learning/base.html" %}
+
+
+{% block body_block %}
+<h1>Daftar Berhasil...</h1>
+        <p>Sekarang Anda Telah Terdaftar</p>
+{% endblock %}
