@@ -15,6 +15,7 @@
     <!--Fonts-->
     <link href='https://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    {% block head_block %}{% endblock %}
 </head>
 
 
@@ -40,13 +41,16 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'registration_register' %}"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
                     <li><a href="{% url 'auth_login' %}">Masuk</a></li>
+                    <li><a href="#">About</a></li>
                 </ul>
             </div>
             {% endif %}
         </div>
     </nav>
         </div>
+        <div class="container" style="heigt:auto;">
             {% block body_block %}{% endblock %}
+        </div>
 <footer class="footer">
         <ul class="list-inline">
             <li><a href="#"><i class="fa fa-github fa-3x"></i></a></li>

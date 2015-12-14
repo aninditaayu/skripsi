@@ -56,7 +56,7 @@ class Soal(models.Model):
     instruksi = models.TextField(null=False)
     kunci_jawaban = models.TextField(null=False)
     hint = models.TextField(null=False)
-    
+    isi_console = models.TextField(null=True, blank=True)
     def __unicode__(self):
         return "{}-{}".format(self.judul_soal, self.materi)
 
