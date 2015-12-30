@@ -187,7 +187,7 @@ def tambah_bab(request):
 def soal_view(request, materi_slug, bab_slug):
     materi = Materi.objects.get(slug=materi_slug)
     soal = Soal.objects.filter(materi=materi)
-    pertama = soal[1].isi_console
+    pertama = soal[0].isi_console
 
     context_dict={"soal":soal,"pertama":pertama}
 
