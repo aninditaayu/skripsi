@@ -24,7 +24,7 @@ body {
 
 /*Logo*/
 .navbar-default .navbar-brand {
-    color: #fff;
+    color: #777;
 }
 
 /*Home*/

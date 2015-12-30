@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
+
 #User profile
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
@@ -34,7 +35,7 @@ class Bab(models.Model):
 
 #Materi
 class Materi(models.Model):
-    bab = models.ForeignKey(Bab, related_name="materi")
+    bab = models.ForeignKey(Bab, related_name="bab")
     judul_materi = models.CharField(max_length=128)
     deskripsi = models.TextField(null=True)
     views = models.IntegerField(default=0)
@@ -49,13 +50,13 @@ class Materi(models.Model):
 
 #Soal
 class Soal(models.Model):
-    materi = models.ForeignKey(Materi)
+    materi = models.ForeignKey(Materi,related_name="materi")
     judul_soal = models.CharField(max_length=128)
     deskripsi_soal = models.TextField(null=False)
     instruksi = models.TextField(null=False)
     kunci_jawaban = models.TextField(null=False)
     hint = models.TextField(null=False)
-    
+    isi_console = models.TextField(null=True, blank=True)
     def __unicode__(self):
         return "{}-{}".format(self.judul_soal, self.materi)
 

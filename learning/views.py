@@ -184,12 +184,11 @@ def tambah_bab(request):
     return render(request, 'learning/tambah_bab.html', {'form': form})
 
 #soal
-def soal_view(request, materi_slug, bab_slug):
-    materi = Materi.objects.get(slug=materi_slug)
-    soal = Soal.objects.filter(materi=materi)
-    pertama = soal[0].isi_console
+def soal_view(request, materi_slug, bab_slug, soal_id):
+    nav = Materi.objects.get(slug=materi_slug)
+    soal = Soal.objects.get(id=soal_id)
 
-    context_dict={"soal":soal,"pertama":pertama}
+    context_dict={"soal":soal, "nav":nav}
 
     return render(request, 'learning/soal.html', context_dict)
 

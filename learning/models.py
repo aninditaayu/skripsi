@@ -35,7 +35,7 @@ class Bab(models.Model):
 
 #Materi
 class Materi(models.Model):
-    bab = models.ForeignKey(Bab, related_name="materi")
+    bab = models.ForeignKey(Bab, related_name="bab")
     judul_materi = models.CharField(max_length=128)
     deskripsi = models.TextField(null=True)
     views = models.IntegerField(default=0)
@@ -50,7 +50,7 @@ class Materi(models.Model):
 
 #Soal
 class Soal(models.Model):
-    materi = models.ForeignKey(Materi)
+    materi = models.ForeignKey(Materi,related_name="materi")
     judul_soal = models.CharField(max_length=128)
     deskripsi_soal = models.TextField(null=False)
     instruksi = models.TextField(null=False)

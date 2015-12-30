@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>MATERI</title>
-    </head>
+{% extends 'learning/base.html' %}
 
-    <body>
-        <h1>Kumpulan Materi</h1>
+{% load staticfiles %}
 
-        {% if materi %}
+{% block title %}{{ judul_materi }}{% endblock %}
+
+{% block body_block %}
+    <h1>Kumpulan Materi</h1>
+{% if materi %}
             <ul>
                 {% for m in materi %}
-                <li>{{m.bab.slug}}
-                    <h2><a href="/learning/bab/{{m.bab.slug}}/materi/{{ m.slug }}/">{{ m.judul_materi }}</a></h2>
+                <li>
+                    <h2><a href="/learning/bab/{{m.bab.slug}}/materi/{{ m.slug }}/{% with m.materi.all|first as pertama %} {{pertama.id}} {% endwith %}/">{{ m.judul_materi }}</a></h2>
 		<p> {{ m.deskripsi|safe }} 	</p>
-               </li> 
-                {% endfor %}
+               </li>
+              {% endfor %}
             </ul>
         {% else %}
             <strong>Tidak ada materi yang tersedia.</strong>
         {% endif %}
-
-        <!--<a href="/learning/about/">About</a>-->
-    </body>
-</html>
+{% endblock %}

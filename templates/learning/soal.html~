@@ -10,25 +10,32 @@
 
 
 {% block body_block %}
-        <h1>Kumpulan Soal</h1>
+<div class = "row">
+  <div class = "col-lg-2">
+	<h2>Navigasi</h2>
+	<ul>
+	{% for navigasi in nav.materi.all %}
+		<li><a href="/learning/bab/{{ navigasi.materi.bab.slug }}/materi/{{ navigasi.materi.slug }}/{{ navigasi.id }}">{{navigasi.judul_soal}}</a></li>
+	{% endfor %}
+	</ul>
+ </div>
+  <div class = "col-lg-4" style="overflow-y:scroll; height:500px;">
+
 
         {% if soal %}
-            <ul>
-                {% for s in soal %}
-                <li>
-                    <h2><a href="/learning/soal/{{ s.slug }}/">{{ s.judul_soal }}</a></h2>
+                {% with soal as s %}
+                    <h2>{{ s.judul_soal }}</h2>
 		<p> {{ s.deskripsi_soal|safe }}</p>
-		<p> {{ s.instruksi|safe }}</p>
-		<p> {{ s.hint|safe }}</p>
-                
-               </li> 
-                {% endfor %}
-            </ul>
+		<p> {{ s.instruksi|safe }}</p>		
+		<div id="spoiler" style="display:none"> 
+		<p> {{ s.hint|safe }}</p> 
+		</div> 
+		<button title="Hint" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">Hint</button>
+		
+                {% endwith %}
         {% else %}
             <strong>Tidak ada materi yang tersedia.</strong>
         {% endif %}
-        
-
         
         <script type="text/javascript"> 
 // output functions are configurable.  This one just appends some text
@@ -68,14 +75,13 @@ function cleanit() {
 	document.getElementById("yourcode").value = "{{pertama|escapejs}}"; 
 	document.getElementById("output").innerHTML=""; 
 }
-</script> 
-<div class="col-lg-12" style="margin-bottom:100px;">
+</script>
+</div> 
+<div class="col-lg-6" style="margin-bottom:100px;">
         <h3>Try This</h3> 
         
         <form> 
-<textarea id="yourcode" cols="40" rows="10">
-{{pertama}}
-				</textarea><br /> 
+		<textarea id="yourcode" cols="60" rows="10">{{soal.isi_console}}</textarea><br /> 
 				<button type="button" onclick="runit()">Periksa</button> 
 				<button Type="button" onclick="cleanit()">Ulangi</button>
 				</form> 
@@ -83,6 +89,8 @@ function cleanit() {
 				<!-- If you want turtle graphics include a canvas -->
 				<div id="mycanvas"></div> 
 		</form>
-		</div>
+		
+      </div>
+</div>
 
 {% endblock %}
