@@ -24,7 +24,7 @@ body {
 
 /*Logo*/
 .navbar-default .navbar-brand {
-    color: #777;
+    color: #fff;
 }
 
 /*Home*/
@@ -336,7 +336,7 @@ code {
         }
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
  
 ::-webkit-scrollbar-track {

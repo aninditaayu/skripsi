@@ -5,6 +5,7 @@ from learning.forms import BabForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 #register
 def register(request):
@@ -192,4 +193,8 @@ def soal_view(request, materi_slug, bab_slug, soal_id):
 
     return render(request, 'learning/soal.html', context_dict)
 
-
+#user
+def user_dashboard(request):
+    user = request.user
+    context_dict={"user":user}
+    return render(request, 'learning/user.html', context_dict)

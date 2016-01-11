@@ -12,7 +12,7 @@
                 {% for b in bab %}
                 <li>
                     <h2><a href="/learning/bab/{{ b.slug }}/">{{ b.nama }}</a></h2>
-		<p> {{ b.deskripsi }} 	</p>
+		<p> {{ b.deskripsi | safe}} 	</p>
                </li> <!-- kasih href buat link-in bab-->
               {% endfor %}
             </ul>

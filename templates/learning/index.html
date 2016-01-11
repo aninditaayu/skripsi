@@ -12,16 +12,6 @@
 	<h1>Selamat Datang di Be-Py</h1>
 	{% endif %}
 
-        {% if categories %}
-            <ul>
-                {% for b in bab %}
-    		<li><a href="{% url 'bab'  b.slug %}">{{ b.nama }}</a></li>
-		{% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no categories present.</strong>
-        {% endif %}
-
 
 	{% if user.is_authenticated %}
 	<br /><a href="/learning/bab/">Mulai Sekarang</a><br />

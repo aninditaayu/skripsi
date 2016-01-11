@@ -5,6 +5,7 @@ from learning.forms import BabForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 #register
 def register(request):
@@ -185,11 +186,14 @@ def tambah_bab(request):
 
 #soal
 def soal_view(request, materi_slug, bab_slug, soal_id):
-    materi = Materi.objects.get(slug=materi_slug)
+    nav = Materi.objects.get(slug=materi_slug)
     soal = Soal.objects.get(id=soal_id)
 
-    context_dict={"soal":soal, "materi":materi}
+    context_dict={"soal":soal, "nav":nav}
 
     return render(request, 'learning/soal.html', context_dict)
 
-
+#user
+def user_dashboard(request):
+    user = request.user
+    context_dict={"user":user}

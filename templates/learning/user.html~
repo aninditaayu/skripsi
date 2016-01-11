@@ -1,0 +1,8 @@
+{% extends "learning/base.html" %}
+
+
+{% block body_block %}
+<h1>Kemampuan Saya</h1>
+	<p>user:{{user.username}}</p>
+        <p>email:{{user.email}}</p>  
+{% endblock %}

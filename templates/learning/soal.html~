@@ -13,11 +13,11 @@
 <div class = "row">
   <div class = "col-lg-2">
 	<h2>Navigasi</h2>
-	<ul>
+	<ol>
 	{% for navigasi in nav.materi.all %}
 		<li><a href="/learning/bab/{{ navigasi.materi.bab.slug }}/materi/{{ navigasi.materi.slug }}/{{ navigasi.id }}">{{navigasi.judul_soal}}</a></li>
 	{% endfor %}
-	</ul>
+	</ol>
  </div>
   <div class = "col-lg-4" style="overflow-y:scroll; height:500px;">
 
@@ -26,12 +26,8 @@
                 {% with soal as s %}
                     <h2>{{ s.judul_soal }}</h2>
 		<p> {{ s.deskripsi_soal|safe }}</p>
-		<p> {{ s.instruksi|safe }}</p>		
-		<div id="spoiler" style="display:none"> 
-		<p> {{ s.hint|safe }}</p> 
-		</div> 
-		<button title="Hint" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">Hint</button>
-		
+		<p> {{ s.instruksi|safe }}</p>
+		<p> {{ s.hint|safe }}</p>
                 {% endwith %}
         {% else %}
             <strong>Tidak ada materi yang tersedia.</strong>
@@ -72,7 +68,7 @@ function runit() {
    });
 } 
 function cleanit() { 
-	document.getElementById("yourcode").value = "{{pertama|escapejs}}"; 
+	document.getElementById("yourcode").value = "{{soal.isi_console|escapejs}}"; 
 	document.getElementById("output").innerHTML=""; 
 }
 </script>
@@ -81,10 +77,10 @@ function cleanit() {
         <h3>Try This</h3> 
         
         <form> 
-		<textarea id="yourcode" cols="60" rows="10">{{soal.isi_console}}</textarea><br /> 
+		<textarea id="yourcode" cols="66.5" rows="10">{{soal.isi_console}}</textarea><br /> 
 				<button type="button" onclick="runit()">Periksa</button> 
 				<button Type="button" onclick="cleanit()">Ulangi</button>
-				</form> 
+				</form> <br>
 				<pre id="output" ></pre> 
 				<!-- If you want turtle graphics include a canvas -->
 				<div id="mycanvas"></div> 
