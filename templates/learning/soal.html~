@@ -26,7 +26,9 @@
                 {% with soal as s %}
                     <h2>{{ s.judul_soal }}</h2>
 		<p> {{ s.deskripsi_soal|safe }}</p>
+		<h4>Instruksi</h4>
 		<p> {{ s.instruksi|safe }}</p>
+		<h4>Petunjuk</h4>
 		<p> {{ s.hint|safe }}</p>
                 {% endwith %}
         {% else %}
@@ -77,13 +79,11 @@ function cleanit() {
         <h3>Try This</h3> 
         
         <form> 
-		<textarea id="yourcode" cols="66.5" rows="10">{{soal.isi_console}}</textarea><br /> 
+		<textarea id="yourcode" cols="67" rows="10">{{soal.isi_console}}</textarea><br /> 
 				<button type="button" onclick="runit()">Periksa</button> 
 				<button Type="button" onclick="cleanit()">Ulangi</button>
 				</form> <br>
-				<pre id="output" ></pre> 
-				<!-- If you want turtle graphics include a canvas -->
-				<div id="mycanvas"></div> 
+				<pre id="output" ></pre>  
 		</form>
 		
       </div>

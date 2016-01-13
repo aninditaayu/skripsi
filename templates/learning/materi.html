@@ -12,6 +12,7 @@
                 <li>
                     <h2><a href="/learning/bab/{{m.bab.slug}}/materi/{{ m.slug }}/{% with m.materi.all|first as pertama %}{{pertama.id}}{% endwith %}/">{{ m.judul_materi }}</a></h2>
 		<p> {{ m.deskripsi|safe }} 	</p>
+		<hr style = "border-color: rgb(255, 208, 64)">
                </li>
               {% endfor %}
             </ul>
