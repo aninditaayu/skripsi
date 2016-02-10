@@ -1,7 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+import datetime
 
+#UserProfileKey
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    activation_key = models.CharField(max_length=40, blank=True)
+    key_expires = models.DateTimeField(default=datetime.date.today())
+      
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name_plural=u'User profiles'
 
 #User profile
 class UserProfile(models.Model):
@@ -67,7 +79,8 @@ class Jawaban(models.Model):
     jawaban = models.TextField()
     waktu_jawab = models.DateTimeField(auto_now_add=True)
     kali_jawab = models.IntegerField(default=0)
+    sudah_benar = models.BooleanField(default=False)
 
-    def __unicode(self):
+    def __unicode__(self):
         return "Soal {0} - {1} - {2}".format(self.soal, self.user, self.kali_jawab)
 

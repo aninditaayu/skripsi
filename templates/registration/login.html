@@ -1,15 +1,31 @@
 {% extends "learning/base.html" %}
 
 {% block body_block %}
-<h1>Masuk</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-2 col-sm-4">
+    </div>
+    
+    <div class="col=xs-8 col-sm-4">
+      
+        <h1>Masuk</h1>
+        <div class="form-group">
+
         <form method="post" action="">
                 {% csrf_token %}
                 {{ form.as_p }}
 
-                <input type="submit" value="Log in" />
+                <input type="submit" value="Masuk" />
                 <input type="hidden" name="next" value="{{ next }}" />
-         </form>
+        </form>
+        </div>
+        <div class="col-xs-8 col-sm-12">
+        <p>Belum buat akun?<a href="{% url 'registration_register' %}">Daftar Sekarang!</a></p>
+        </div>
+      </div>
+    </div>
+</div>
 
-        <p>Belum buat akun?<a href="{% url 'registration_register' %}">Daftar Sekarang</a>!</p>
+        
 {% endblock %}
 

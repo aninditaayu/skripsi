@@ -1,11 +1,84 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from learning.models import Bab, Materi, Soal
-from learning.forms import BabForm, UserForm, UserProfileForm
+import json
+import re
+
+from django.shortcuts import render, render_to_response, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import auth
+from django.core.context_processors import csrf 
+from learning.models import Bab, Materi, Soal, Jawaban, UserProfileKey
+from learning.forms import BabForm, UserForm, UserProfileForm, RegistrationForm
+from django.template import RequestContext
+from django.core.mail import send_mail
+import hashlib, datetime, random
+from django.utils import timezone
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+#Register user
+def register_user(request):
+    args = {}
+    args.update(csrf(request))
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        args['form'] = form
+        if form.is_valid(): 
+            form.save()  # save user to database if form is valid
+
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            salt = hashlib.sha1(str(random.random())).hexdigest()[:5]            
+            activation_key = hashlib.sha1(salt+email).hexdigest()            
+            key_expires = datetime.datetime.today() + datetime.timedelta(2)
+
+            #Get user by username
+            user=User.objects.get(username=username)
+
+            # Create and save user profile                                                                                                                                  
+            new_profile = UserProfileKey(user=user, activation_key=activation_key, 
+                key_expires=key_expires)
+            new_profile.save()
+            host=request.META['HTTP_HOST']
+
+            # Send email with activation key
+            email_subject = 'Account confirmation'
+            email_body = "Hey {}, terima kasih telah mendaftar. Untuk aktivasi akun Anda, harap klik link di bawah ini dalam waktu kurang dari \
+            48jam http://{}/confirm/{}".format(username, host, activation_key)
+
+            send_mail(email_subject, email_body, 'be-py@alviandk.com',
+                [email], fail_silently=False)
+
+            return HttpResponseRedirect('/register_success')
+    else:
+        args['form'] = RegistrationForm()
+
+    return render_to_response('user_profile/register.html', args, context_instance=RequestContext(request))
+
+
+#Aktivasi akun baru
+def register_confirm(request, activation_key):
+    #check if user is already logged in and if he is redirect him to some other url, e.g. home
+    if request.user.is_authenticated():
+        HttpResponseRedirect('/learning/')
+
+    # check if there is UserProfile which matches the activation key (if not then display 404)
+    user_profile = get_object_or_404(UserProfileKey, activation_key=activation_key)
+
+    #check if the activation key has expired, if it hase then render confirm_expired.html
+    if user_profile.key_expires < timezone.now():
+        return render_to_response('user_profile/confirm_expired.html')
+    #if the key hasn't expired save user and set him as active and render some template to confirm activation
+    user = user_profile.user
+    user.is_active = True
+    user.save()
+    return render_to_response('user_profile/confirm.html')
+
+#Aktivasi akun baru
+def register_success(request):    
+    
+    return render_to_response('user_profile/success.html')
+
 
 #register
 def register(request):
@@ -133,10 +206,15 @@ def user_logout(request):
 
 #index
 def index(request):
-
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {'boldmessage': "I am bold font from the context"}
+    try:
+        all_soal = Soal.objects.all().count()
+        user = request.user
+        jawaban_user = Jawaban.objects.filter(user=user, sudah_benar=True).count()
+        progress = float(jawaban_user)/float(all_soal)*100
+    except:
+        progress = ''
+    
+    context_dict = {'progress': progress}
 
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
@@ -189,12 +267,119 @@ def soal_view(request, materi_slug, bab_slug, soal_id):
     nav = Materi.objects.get(slug=materi_slug)
     soal = Soal.objects.get(id=soal_id)
 
-    context_dict={"soal":soal, "nav":nav}
+    context_dict={"soal":soal, "nav":nav, "request":request}
 
     return render(request, 'learning/soal.html', context_dict)
 
 #user
 def user_dashboard(request):
     user = request.user
-    context_dict={"user":user}
+    try:
+        all_soal = Soal.objects.all().count()
+        user = request.user
+        jawaban_user = Jawaban.objects.filter(user=user, sudah_benar=True).count()
+        progress = float(jawaban_user)/float(all_soal)*100
+    except:
+        progress = ''
+    
+    context_dict={"user":user, "progress":progress}
     return render(request, 'learning/user.html', context_dict)
+
+#ubah_profil
+def ubah_profil(request):
+    # If it's a HTTP POST, we're interested in processing form data.
+    if request.method == 'POST':
+        # Attempt to grab information from the raw form information.
+        # Note that we make use of both UserForm and UserProfileForm.
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
+
+        # If the two forms are valid...
+        if user_form.is_valid() and profile_form.is_valid():
+            # Save the user's form data to the database.
+            user = user_form.save()
+
+            # Now we hash the password with the set_password method.
+            # Once hashed, we can update the user object.
+            user.set_password(user.password)
+            user.save()
+
+            # Now sort out the UserProfile instance.
+            # Since we need to set the user attribute ourselves, we set commit=False.
+            # This delays saving the model until we're ready to avoid integrity problems.
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            # Did the user provide a profile picture?
+            # If so, we need to get it from the input form and put it in the UserProfile model.
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+            # Now we save the UserProfile model instance.
+            profile.save()
+
+            # Update our variable to tell the template registration was successful.
+            registered = True
+
+        # Invalid form or forms - mistakes or something else?
+        # Print problems to the terminal.
+        # They'll also be shown to the user.
+        else:
+            print user_form.errors, profile_form.errors
+    else:
+	user = User.objects.get(username=request.user)
+	# user_profile = UserProfile.objects.get(user=user)
+        user_form = UserForm(instance=user)
+        profile_form = UserProfileForm(instance=user_profile)
+
+    return render(request,
+            'learning/ubah_profil.html',
+            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+
+    
+
+    
+
+#ajax cek jawaban
+def cek_jawaban(request):
+	if request.method == 'POST':
+		jawaban_text = request.POST.get('jawaban')
+		
+		user_id = request.POST.get('user_id')
+		soal_id = request.POST.get('soal_id')
+		response_data = {}
+		user = User.objects.get(id=int(user_id))
+		soal = Soal.objects.get(id=int(soal_id))
+			
+		try:
+			jawaban = Jawaban.objects.get(soal=soal, user=user)
+			jawaban.jawaban= jawaban_text
+		except:
+			jawaban = Jawaban.objects.create(soal=soal, user=user, jawaban=jawaban_text)
+		
+		jawaban.kali_jawab += 1
+		
+		kunci=soal.kunci_jawaban.replace(u'\r',u'')
+   		kunci=u'{}\n'.format(kunci)
+		if kunci == jawaban.jawaban :
+			response_jawaban = "Jawaban Anda benar! :D"
+			jawaban.sudah_benar = True
+		else:
+			response_jawaban = "Coba lagi. Jawaban Anda masih salah."
+			jawaban.sudah_benar = False
+		print jawaban.jawaban
+		print soal.kunci_jawaban
+
+		jawaban.save()	
+		response_data['response_jawaban'] = response_jawaban
+		response_data['jawaban'] = jawaban.jawaban
+		response_data['jawaban_html'] = jawaban_text
+		response_data['kunci'] = soal.kunci_jawaban
+		
+		return HttpResponse(json.dumps(response_data),
+							content_type="application/json")
+	else:
+		return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )

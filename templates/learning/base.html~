@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Be-Py | Beranda</title>
+    <title>Be-Py</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,10 +32,22 @@
             </div>
 	    {% if user.is_authenticated %}
 		<div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-right">
-			 <li><a href="{% url 'auth_logout' %}?next=/learning/"><span class="glyphicon glyphicon-log-out"></span> Keluar</a></li>
-                </ul>
-            </div>
+			<ul class="nav navbar-nav navbar-right">
+			<li><a href="/learning/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ user.username }} <span class="caret"></span></a>
+			  <ul class="dropdown-menu">
+			    <li><a href="/learning/dashboard">Kemampuan Saya</a></li>
+			    <li><a href="#">Lihat Profil</a></li>
+			    <li><a href="/learning/ubah_profil">Ubah Profil</a></li>
+			    <li role="separator" class="divider"></li>
+			    <li><a href="#">Tentang Be-Py</a></li>
+			    <li><a href="{% url 'auth_logout' %}?next=/learning/">Keluar</a></li>
+			  </ul>
+			</li>
+		      </ul>
+            	 </div>
+	    
 	    {% else %}
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -51,12 +63,13 @@
         <div class="container" style="heigt:auto;">
             {% block body_block %}{% endblock %}
         </div>
-    <footer class="footer">
+<footer class="footer">
         <ul class="list-inline">
             <li><a href="#"><i class="fa fa-github fa-3x"></i></a></li>
             <li><a href="#"><i class="fa fa-linkedin fa-3x"></i></a></li>
             <li><a href="#"><i class="fa fa-twitter fa-3x"></i></a></li>
         </ul>
+        <p style="color:white">© Be-Py</p>
     </footer>
 
  <!--Script-->

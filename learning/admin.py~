@@ -1,6 +1,6 @@
 from django.contrib import admin
-from learning.models import Bab, Materi, Soal, Jawaban
-from rango.models import UserProfile
+from learning.models import Bab, Materi, Soal, Jawaban, UserProfile, UserProfileKey
+
 
 
 class BabAdmin(admin.ModelAdmin):

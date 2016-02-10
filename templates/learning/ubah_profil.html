@@ -1,14 +1,14 @@
-{% extends "learning/base.html" %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ubah Profil</title>
+    </head>
 
-{% block body_block %}
-<h1>Daftar di Sini!</h1>
-      {% if registered %}
-        Hei! <strong>Terima kasih telah mendaftar!</strong>
-        <a href="/learning/">Kembali ke Beranda</a><br />
-        {% else %}
-        <strong>Daftar di sini!</strong><br />
+    <body>
 
-        <form id="user_form" method="post" action="/learning/register/"
+        {% if registered %}
+
+        <form id="user_form" method="post" action="/learning/ubah_profil/"
                 enctype="multipart/form-data">
 
             {% csrf_token %}
@@ -20,10 +20,8 @@
             {{ profile_form.as_p }}
 
             <!-- Provide a button to click to submit the form. -->
-            <input type="submit" name="submit" value="Register" />
+            <input type="submit" name="submit" value="Simpan" />
         </form>
         {% endif %}
-{% endblock %}
-
-
-   
+    </body>
+</html>

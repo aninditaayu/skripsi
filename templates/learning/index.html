@@ -8,13 +8,28 @@
     
         {% if user.is_authenticated %}
 	<h1>Selamat Datang.. {{ user.username }}!</h1>
+	<div class="row">
+		<div class = "col-lg-6">
+			<h2>Progress Anda:</h2>
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+				</div>
+			</div>
+			<h4>{{progress|floatformat:-2}}% Complete</h4>
+		</div>
+    </div>
+    
 	{% else %}
 	<h1>Selamat Datang di Be-Py</h1>
 	{% endif %}
 
 
 	{% if user.is_authenticated %}
+	{% if progress > 0 %}
+	<br /><a href="/learning/bab/">Lanjutkan</a><br />
+	{% else %}
 	<br /><a href="/learning/bab/">Mulai Sekarang</a><br />
+	{% endif %}
 	<a href="/accounts/logout/">Keluar</a><br />
 	{% else %}
 	<a href="/accounts/register/">Daftar Sekarang!</a><br />

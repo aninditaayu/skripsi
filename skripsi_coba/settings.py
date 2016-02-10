@@ -87,6 +87,14 @@ ROOT_URLCONF = 'skripsi_coba.urls'
 
 WSGI_APPLICATION = 'skripsi_coba.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'medusa.hideserver.net'
+EMAIL_HOST_USER = 'be-py@alviandk.com'
+EMAIL_HOST_PASSWORD = 'be-pyp4ssword'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = 'be-py@alviandk.com'
+
 #REGISTRATION
 REGISTRATION_OPEN = True                # If True, users can register
 ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.

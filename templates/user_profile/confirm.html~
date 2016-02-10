@@ -1,0 +1,6 @@
+{% extends "learning/base.html" %}
+
+{% block content %}            
+<p>SELAMAT, AKUN ANDA TELAH DIKONFIRM</p>
+
+{% endblock %}

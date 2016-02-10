@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>E-Learning Python</title>
-    </head>
+{% extends "learning/base.html" %}
 
-    <body>
-        <h1>Daftar BePy</h1>
-
-        {% if registered %}
+{% block body_block %}
+<h1>Daftar di Sini!</h1>
+      {% if registered %}
         Hei! <strong>Terima kasih telah mendaftar!</strong>
         <a href="/learning/">Kembali ke Beranda</a><br />
         {% else %}
@@ -28,5 +23,7 @@
             <input type="submit" name="submit" value="Register" />
         </form>
         {% endif %}
-    </body>
-</html>
+{% endblock %}
+
+
+   
