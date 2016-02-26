@@ -26,7 +26,7 @@
 
 	{% if user.is_authenticated %}
 	{% if progress > 0 %}
-	<br /><a button type="button" class="btn btn-success btn-lg" color="blue" href="/learning/bab/">Lanjutkan</a><br />
+	<br /><a href="/learning/bab/">Lanjutkan</a><br />
 	{% else %}
 	<br /><a href="/learning/bab/">Mulai Sekarang</a><br />
 	{% endif %}

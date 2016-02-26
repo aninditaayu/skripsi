@@ -14,5 +14,6 @@ urlpatterns = patterns('',
 	url(r'^logout/$', views.user_logout, name='logout'),
 	url(r'^dashboard/$', views.user_dashboard, name='dashboard'),
 	url(r'^ubah_profil/$', views.ubah_profil, name='ubah_profil'),
+	url(r'^about/$', views.about, name='about'),
 )
        

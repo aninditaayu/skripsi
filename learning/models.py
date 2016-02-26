@@ -77,6 +77,7 @@ class Jawaban(models.Model):
     soal = models.ForeignKey(Soal)
     user = models.ForeignKey(User)
     jawaban = models.TextField()
+    console_user = models.TextField(null = True, blank=True)
     waktu_jawab = models.DateTimeField(auto_now_add=True)
     kali_jawab = models.IntegerField(default=0)
     sudah_benar = models.BooleanField(default=False)

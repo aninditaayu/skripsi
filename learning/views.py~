@@ -222,6 +222,18 @@ def index(request):
 
     return render(request, 'learning/index.html', context_dict)
 
+def about(request):
+
+    # Construct a dictionary to pass to the template engine as its context.
+    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
+    context_dict = {'boldmessage': "I am bold font from the context"}
+
+    # Return a rendered response to send to the client.
+    # We make use of the shortcut function to make our lives easier.
+    # Note that the first parameter is the template we wish to use.
+
+    return render(request, 'learning/about.html', context_dict)
+
 #bab_view
 def bab_view(request):
     bab_list= Bab.objects.all()
@@ -266,8 +278,12 @@ def tambah_bab(request):
 def soal_view(request, materi_slug, bab_slug, soal_id):
     nav = Materi.objects.get(slug=materi_slug)
     soal = Soal.objects.get(id=soal_id)
-
-    context_dict={"soal":soal, "nav":nav, "request":request}
+    try:
+        jawaban = Jawaban.objects.get(soal=soal, user=user)
+	isi_console = jawaban.console_user
+    except:
+        isi_console = soal.isi_console
+    context_dict={"soal":soal, "nav":nav, "request":request, "isi_console":isi_console}
 
     return render(request, 'learning/soal.html', context_dict)
 
@@ -344,7 +360,7 @@ def ubah_profil(request):
 def cek_jawaban(request):
 	if request.method == 'POST':
 		jawaban_text = request.POST.get('jawaban')
-		
+		console_user = request.POST.get('console_user')
 		user_id = request.POST.get('user_id')
 		soal_id = request.POST.get('soal_id')
 		response_data = {}
@@ -354,12 +370,14 @@ def cek_jawaban(request):
 		try:
 			jawaban = Jawaban.objects.get(soal=soal, user=user)
 			jawaban.jawaban= jawaban_text
+		        jawaban.console_user = console_user
 		except:
-			jawaban = Jawaban.objects.create(soal=soal, user=user, jawaban=jawaban_text)
+			jawaban = Jawaban.objects.create(soal=soal, user=user, jawaban=jawaban_text, console_user=console_user)
 		
 		jawaban.kali_jawab += 1
 		
 		kunci=soal.kunci_jawaban.replace(u'\r',u'')
+   		kunci=u'{}\n'.format(kunci)
 		if kunci == jawaban.jawaban :
 			response_jawaban = "Jawaban Anda benar! :D"
 			jawaban.sudah_benar = True

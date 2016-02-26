@@ -51,9 +51,9 @@
 	    {% else %}
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'registration_register' %}"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
+                    <li><a href="{% url 'daftar' %}"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
                     <li><a href="{% url 'auth_login' %}">Masuk</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
                 </ul>
             </div>
             {% endif %}

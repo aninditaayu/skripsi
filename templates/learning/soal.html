@@ -71,10 +71,11 @@ function cek_jawaban() {
 	    
         console.log("cek jawaban is working!") // sanity check
         var jawaban = $('#output').text();
+	var console_user = $('#yourcode').val();
         $.ajax({
             url : "/learning/cek_jawaban/", // the endpoint
             type : "POST", // http method
-            data : { jawaban : jawaban, user_id: {{request.user.id}}, soal_id: {{soal.id}} }, // data sent with the post request
+            data : { jawaban : jawaban, user_id: {{request.user.id}}, soal_id: {{soal.id}}, console_user : console_user }, // data sent with the post request
             // handle a successful response
             success : function(json) {
                 
@@ -120,7 +121,7 @@ function cleanit() {
         <h3>Coba di Sini:</h3> 
         
         <form> 
-			<textarea id="yourcode" cols="67" rows="10">{{soal.isi_console}}</textarea><br /> 
+			<textarea id="yourcode" cols="67" rows="10">{{isi_console}}</textarea><br /> 
 			<button type="button" onclick="runit()">Periksa</button> 
 			<button Type="button" onclick="cleanit()">Ulangi</button>
 		</form> <br>
