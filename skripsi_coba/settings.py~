@@ -93,7 +93,7 @@ EMAIL_HOST_USER = 'be-py@alviandk.com'
 EMAIL_HOST_PASSWORD = 'be-pyp4ssword'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = 'be-py@anindita.com'
+DEFAULT_FROM_EMAIL = 'be-py@alviandk.com'
 
 #REGISTRATION
 REGISTRATION_OPEN = True                # If True, users can register

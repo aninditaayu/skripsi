@@ -7,76 +7,83 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!--Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <!--CSS-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/custom.css'%}">
-    <link rel="stylesheet" href="{% static 'css/login.css'%}">
-    <!--Fonts-->
-    <link href='https://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-    {% block head_block %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/login.css'%}"> {% block head_block %}{% endblock %}
 </head>
 
 
-    <body>
-	<nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/learning/"><span class="glyphicon glyphicon-search"></span> Be-Py</a>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/learning/"><span class="glyphicon glyphicon-search"></span> Be-Py</a>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/learning/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ user.username }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/learning/dashboard">Kemampuan Saya</a></li>
+                                <li><a href="#">Lihat Profil</a></li>
+                                <li><a href="/learning/ubah_profil">Ubah Profil</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Tentang Be-Py</a></li>
+                                <li><a href="{% url 'auth_logout' %}?next=/learning/">Keluar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                {% else %}
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'daftar' %}"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
+                        <li><a href="{% url 'auth_login' %}">Masuk</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+                {% endif %}
             </div>
-	    {% if user.is_authenticated %}
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-right">
-			<li><a href="/learning/"><span class="glyphicon glyphicon-home"></span> Beranda</a></li>
-			<li class="dropdown">
-			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ user.username }} <span class="caret"></span></a>
-			  <ul class="dropdown-menu">
-			    <li><a href="/learning/dashboard">Kemampuan Saya</a></li>
-			    <li><a href="#">Lihat Profil</a></li>
-			    <li><a href="/learning/ubah_profil">Ubah Profil</a></li>
-			    <li role="separator" class="divider"></li>
-			    <li><a href="#">Tentang Be-Py</a></li>
-			    <li><a href="{% url 'auth_logout' %}?next=/learning/">Keluar</a></li>
-			  </ul>
-			</li>
-		      </ul>
-            	 </div>
-	    
-	    {% else %}
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'daftar' %}"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
-                    <li><a href="{% url 'auth_login' %}">Masuk</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                </ul>
-            </div>
-            {% endif %}
-        </div>
-    </nav>
-        </div>
-        <div class="container" style="heigt:auto;">
+        </nav>
+    </div>
+    <div class="container">
+        <div id="content">
             {% block body_block %}{% endblock %}
         </div>
-<footer class="footer">
-        <ul class="list-inline">
-            <li><a href="#"><i class="fa fa-github fa-3x"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin fa-3x"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter fa-3x"></i></a></li>
-        </ul>
-        <p style="color:white">© Be-Py</p>
-    </footer>
+    </div>
 
- <!--Script-->
+    <div id="footer">
+        <footer class="footer">
+            <div class="container">
+                <ul class="list-inline">
+                    <li><a href="#"><i class="fa fa-github fa-2x"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+                </ul>
+                <p style="color:white">© Be-Py</p>
+            </div>
+        </footer>
+    </div>
+    </div>
+
+    <!--Script-->
     <script src="{% static 'js/jquery.min.js'%}"></script>
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
     <script src="{% static 'js/jquery.validate.min.js'%}"></script>
     <!--<script type="text/javascript" src="{% static 'js/login.js'%}"></script>-->
-    </body>
+</body>
 </html>
-

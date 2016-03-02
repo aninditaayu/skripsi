@@ -7,7 +7,7 @@
     </div>
     
     <div class="col=xs-8 col-sm-4">
-      <form>
+      
         <h1>Masuk</h1>
         <div class="form-group">
 
@@ -26,6 +26,10 @@
     </div>
 </div>
 
-        
+	<script>
+		
+		window.location.href = '/learning/';
+
+	</script>
 {% endblock %}
 

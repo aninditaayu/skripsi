@@ -178,7 +178,10 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, 'learning/login.html', {})
+        if request.user.is_authenticated():
+            return HttpResponseRedirect('/learning/')
+        else:
+            return render(request, 'learning/login.html', {})
 
 #some_view
 def some_view(request):
@@ -279,8 +282,10 @@ def soal_view(request, materi_slug, bab_slug, soal_id):
     nav = Materi.objects.get(slug=materi_slug)
     soal = Soal.objects.get(id=soal_id)
     try:
-        jawaban = Jawaban.objects.get(soal=soal, user=user)
+        jawaban = Jawaban.objects.get(soal=soal, user=request.user)
 	isi_console = jawaban.console_user
+	if not isi_console:
+		isi_console=""
     except:
         isi_console = soal.isi_console
     context_dict={"soal":soal, "nav":nav, "request":request, "isi_console":isi_console}

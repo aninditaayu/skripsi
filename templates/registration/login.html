@@ -26,6 +26,11 @@
     </div>
 </div>
 
-        
+	<script>
+		{% if user.is_authenticated %}
+			window.location.href = '/learning/';
+		{% endif %}
+
+	</script>
 {% endblock %}
 
