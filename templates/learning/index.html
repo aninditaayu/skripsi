@@ -7,9 +7,11 @@
 {% block body_block %}
     
         {% if user.is_authenticated %}
+	<center>
 	<h1>Selamat Datang.. {{ user.username }}!</h1>
 	<div class="row">
-		<div class = "col-lg-6">
+		<div class = "col-lg-12">
+                        
 			<h2>Progress Anda:</h2>
 			<div class="progress">
 				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
@@ -17,25 +19,66 @@
 			</div>
 			<h4>{{progress|floatformat:-2}}% Complete</h4>
 		</div>
-    </div>
-    
+        
+        </div>
 	{% else %}
+	<center>
 	<h1>Selamat Datang di Be-Py</h1>
+	<h4>Langkah awal belajar Python</h4>
+	</center>	
 	{% endif %}
 
 
 	{% if user.is_authenticated %}
 	{% if progress > 0 %}
-	<br /><a href="/learning/bab/">Lanjutkan</a><br />
+	<center>
+	<br /><a href="/learning/bab/" class="btn btn-primary">Lanjutkan</a>    
 	{% else %}
-	<br /><a href="/learning/bab/">Mulai Sekarang</a><br />
+	</center>
+	<center>
+	<br /><a href="/learning/bab/" class="btn btn-primary">Mulai Sekarang</a>
+	</center>	
 	{% endif %}
+	<center>
 	<a href="/accounts/logout/">Keluar</a><br />
+	</center>	
 	{% else %}
-	<a href="/accounts/register/">Daftar Sekarang!</a><br />
-	<a href="/accounts/login/">Masuk</a><br />
+	<center>
+	<br>
+    
+	<a href="{% url 'daftar' %}"><b>Daftar Sekarang</b></a><br />
+	<a href="/accounts/login/"><b>Masuk</b></a><br />
+	<hr style = "border-color: rgb(255, 208, 64)">
+	</center>	
 	{% endif %}
-	<a href="/learning/about/">About</a><br/>
+	
+	<!-- Kolom -->
+	<div class="container">
+    <div id="div_block_main_content" class="row">
+                        
 
+	<div class="marketing">
+		<div class="row-fluid">
+			<div class="span4">
+				<img class="marketing-img" src="/static/img/home-study.jpeg">
+				<h2>Platform Belajar</h2>
+				<p>CodeSaya adalah wadah bagi para insan yang mendambakan untuk menjadi mahir dan lihai dalam <a href="/php/">PHP</a>, <a href="/javascript/">JavaScript</a>, dan lain-lain.</p>
+			</div>
+			<div class="span4">
+				<img class="marketing-img" src="/static/img/home-interactive.jpeg">
+				<h2>Coding Interaktif</h2>
+				<p>Setelah mempelajari suatu topik, anda akan menghadapi sebuah soal coding yang jawabannya langsung diperiksa oleh software.</p>
+			</div>
+			<div class="span4">
+				<img class="marketing-img" src="/static/img/home-badge.jpeg">
+				<h2>Lencana Keren</h2>
+				<p>Dapatkan <a href="/lencana/pasukan-khusus-php/14/">lencana keren</a> dari kami. Lencana yang didapat bisa anda sombongkan ke Facebook atau bandingkan dengan <a href="/terbaik/">coder terbaik</a> kami.</p>
+			</div>
+		</div>
+	</div>
+	
+	</div>
+	</div>
 
 {% endblock %}
+	

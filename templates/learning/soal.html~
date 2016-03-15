@@ -6,7 +6,7 @@
 		<script src="{% static 'js/skulpt.min.js' %}" type="text/javascript"></script> 
 		<script src="{% static 'js/skulpt-stdlib.js' %}" type="text/javascript"></script> 
 		<script src="{% static 'js/custom-ajax.js' %}" type="text/javascript"></script> 
-        <title>SOAL</title>
+        <title>Latihan | Be-Py</title>
  {% endblock %}
 
 
@@ -31,20 +31,20 @@
 		<h4>Instruksi</h4>
 		<p> {{ s.instruksi|safe }}</p>
 
-<div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-	Petunjuk
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-		   <p> {{ s.hint|safe }}</p>
-      </div>
-    </div>
-  </div>	
+	<div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingThree">
+	      <h4 class="panel-title">
+		<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+		Petunjuk
+		</a>
+	      </h4>
+	    </div>
+	    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	      <div class="panel-body">
+			   <p> {{ s.hint|safe }}</p>
+	      </div>
+	    </div>
+	</div>	
         {% endwith %}
         {% else %}
             <strong>Tidak ada materi yang tersedia.</strong>
@@ -121,9 +121,10 @@ function cleanit() {
         <h3>Coba di Sini:</h3> 
         
         <form> 
-			<textarea id="yourcode" cols="67" rows="10">{{soal.isi_console}}</textarea><br /> 
+			<textarea id="yourcode" cols="67" rows="10">{{isi_console}}</textarea><br /> 
 			<button type="button" onclick="runit()">Periksa</button> 
 			<button Type="button" onclick="cleanit()">Ulangi</button>
+			<button Type="button" onclick="">Berikutnya</button>
 		</form> <br>
 		<pre id="output" ></pre>
 		<div id="response" class="alert alert-warning alert-dismissible fade in" role="alert" style="dispay:none"> 

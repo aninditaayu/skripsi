@@ -7,9 +7,11 @@
 {% block body_block %}
     
         {% if user.is_authenticated %}
+	<center>
 	<h1>Selamat Datang.. {{ user.username }}!</h1>
 	<div class="row">
-		<div class = "col-lg-6">
+		<div class = "col-lg-12">
+                        
 			<h2>Progress Anda:</h2>
 			<div class="progress">
 				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
@@ -17,25 +19,38 @@
 			</div>
 			<h4>{{progress|floatformat:-2}}% Complete</h4>
 		</div>
-    </div>
-    
+        
+        </div>
 	{% else %}
+	<center>
 	<h1>Selamat Datang di Be-Py</h1>
+	<h4>Langkah awal belajar Python</h4>
+	</center>	
 	{% endif %}
 
 
 	{% if user.is_authenticated %}
 	{% if progress > 0 %}
+	<center>
+	<a href="/learning/bab/" class="btn btn-primary">Lanjutkan</a> 
+	<input type="submit" name="submit" class="btn btn-primary" href="/learning/bab/" value="Lanjutkan">        
 	<br /><a href="/learning/bab/">Lanjutkan</a><br />
 	{% else %}
+	</center>
+	<center>
+	<input type="submit" name="submit" class="btn btn-primary" href="/learning/bab/" value="Mulai Sekarang">
 	<br /><a href="/learning/bab/">Mulai Sekarang</a><br />
+	</center>	
 	{% endif %}
+	<center>
 	<a href="/accounts/logout/">Keluar</a><br />
+	</center>	
 	{% else %}
-	<a href="/accounts/register/">Daftar Sekarang!</a><br />
-	<a href="/accounts/login/">Masuk</a><br />
+	<center>
+	<br>
+	<a href="{% url 'daftar' %}"><b>Daftar Sekarang</b></a><br />
+	<a href="/accounts/login/"><b>Masuk</b></a><br />
+	<hr style = "border-color: rgb(255, 208, 64)">
+	</center>	
 	{% endif %}
-	<a href="/learning/about/">About</a><br/>
-
-
 {% endblock %}

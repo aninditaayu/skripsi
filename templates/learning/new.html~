@@ -1,0 +1,608 @@
+
+
+
+
+
+
+<!--
+                 __
+                /\ \
+  ___    ___    \_\ \     __    ____     __     __  __     __
+ /'___\ / __`\  /'_` \  /'__`\ /',__\  /'__`\  /\ \/\ \  /'__`\
+/\ \__//\ \L\ \/\ \L\ \/\  __//\__, `\/\ \L\.\_\ \ \_\ \/\ \L\.\_
+\ \____\ \____/\ \___,_\ \____\/\____/\ \__/.\_\\/`____ \ \__/.\_\
+ \/____/\/___/  \/__,_ /\/____/\/___/  \/__/\/_/ `/___/> \/__/\/_/
+                                                    /\___/
+                                                    \/__/
+-->
+<!DOCTYPE html>
+
+
+<html lang="id">
+
+    <head>
+        <meta charset="utf-8">
+        <title>CodeSaya | Belajar Coding Secara Interaktif</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+        <meta name="description" content="Codesaya | Belajar coding mudah dan menyenangkan tanpa install apapun. Gratis. Belajar Programming. Belajar PHP, JavaScript, Git, dll.">
+
+
+        <meta name="author" content="CodeSaya Team">
+        <meta name="og:author" content="CodeSaya Team">
+        <meta property="og:image" content="http://codesaya.com/static/img/page_thumbnail_2.png"/>
+
+        <link href="skripsi_coba/static/css/codesaya.css" rel="stylesheet">
+
+        <style type="text/css">
+            .btn-progress {
+                width:100%;
+            }
+            .jumbotron h1 {
+                font-size:60px;
+            }
+            .jumbotron p {
+                font-size:24px;
+            }
+            .subhead h1 {
+                font-size:40px;
+            }
+            .subhead p {
+                font-size:20px;
+                color:#ddd;
+            }
+            .subhead {
+                padding:10px 0;
+            }
+            .masthead {
+                padding:30px 0 20px;
+            }
+            .masthead .btn{
+                padding:14px 19px;
+                font-size:18px;
+            }
+            .marketing h1{
+                font-size:40px;
+            }
+            .marketing h2{
+                font-size:28px;
+            }
+            .footer {
+                margin-top:0px;
+            }
+            .footer {
+                padding:15px 0 0;
+            }
+            hr.soften {
+                margin:15px 0;
+            }
+            .marketing > hr.soften {
+                margin:35px 0;
+            }
+            .tooltip_class {
+                font-size:12px;
+            }
+            .footer_below{
+                background-color:#ececec;
+                border-top: 1px solid #e0e0e0;
+                margin-top:30px;
+                padding:10px 0;
+            }
+            .jumbotron {
+                background: -moz-linear-gradient(45deg,  rgb(2, 0, 30)  0%, rgb(29, 39, 100) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,  rgb(2, 0, 30) ), color-stop(100%, rgb(29, 39, 100))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(45deg,  rgb(2, 0, 30)  0%, rgb(29, 39, 100) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(45deg,   rgb(2, 0, 30) 0%, rgb(29, 39, 100) 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(45deg,  rgb(2, 0, 30) 0%, rgb(29, 39, 100) 100%); /* IE10+ */
+                background: linear-gradient(60deg, rgb(2, 0, 30) 0%, rgb(29, 39, 100) 75%) repeat scroll 0% 0% transparent;
+
+            }
+            .navbar-fixed-top, .navbar-fixed-bottom {
+                position: static;
+            }      
+            .navbar-inner {
+                padding:0px !important;
+            }
+            body {
+                padding-top:0;
+            }
+            .center {
+                text-align:center;
+            }
+            .alert-not-a-member {
+                margin-top:10px;
+                margin-bottom:-10px;
+            }
+            .list-score .btn {
+                width:35px;
+                margin-left:5px;
+            }
+            .task-container {
+                margin-top:5px;
+            }
+            .profile_image {
+                margin-top:10px;
+
+            }
+            .profile_location {
+                font-size:14px;
+                color:#ccc;
+            }
+            .list-progress {
+                position:absolute;
+                top:5px;
+                right:10px;
+                width:100px;
+            }
+            .progress-black > .bar {
+                color:white;
+                background-color:#333;
+            }
+            .profile_div {
+                padding:10px 0;
+            }
+            .profile_name {
+                font-size:28px;
+                font-weight:bold;
+            }
+            #___plus_0, #___plus_1 {
+                margin-left:-33px !important;
+            }
+            .jumbotron .btn {
+                    display:inline;
+            }
+            .bs-docs-social{
+                border-bottom:0px;
+            }
+            .bs-docs-social-buttons li {
+                    padding:5px 2px;
+            }
+            footer.footer {
+                border-top:0px;
+            }
+        </style>
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="/static/js/html5shiv.js"></script>
+        <![endif]-->
+
+        
+<style type="text/css">
+    .carousel-inner .item {
+        padding:0 35px;
+    }
+    .carousel-control {
+        width:20px;
+        height:20px;
+        font-size:20px;
+        line-height:15px;
+    }
+</style>
+
+
+        <!-- Le fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" href="/static/img/favicon_cs.png">
+        <link rel="shortcut icon" href="/static/img/favicon_cs.ico">
+        <!-- Analytics
+        ================================================== -->
+        
+        <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                
+                ga('create', 'UA-42391114-1', 'codesaya.com');
+                ga('require', 'linkid', 'linkid.js');
+                ga('send', 'pageview');
+                
+        </script>
+        
+
+    </head>
+
+    <body data-spy="scroll" data-target=".bs-docs-sidebar">
+        <div id="wrap">
+            <!-- Navbar-->
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div id="div_navbar" class="navbar-inner">
+                    <div class="container">
+                        <a class="brand" style="display:none;" href="/">CodeSaya</a>
+                        <div class="bar-main_menu">
+                            <ul class="nav">
+                                
+                                <li style="margin-left:0px" class="active">
+                                <a href="/"><i class="icon-home icon-white"></i> Utama</a>
+                                </li>
+                                <li None>
+                                <a href="/belajar/"><i class="icon-asterisk icon-white"></i> Belajar</a>
+                                </li>
+                                <li None>
+                                <a href="/diskusi/"><i class="icon-comment icon-white"></i> Diskusi</a>
+                                </li>
+                                <li None>
+                                <a href="/artikel/"><i class="icon-book icon-white"></i> Artikel</a>
+                                </li>
+                            </ul>
+                             
+                            <ul class="pull-right nav">
+                                <li None>
+                                <a href="/daftar/"><i class="icon-hand-up icon-white"></i> Daftar</a>
+                                </li>
+                                <li None>
+                                
+                                <a href="/masuk/?next=/">
+                                
+                                <i class="icon-play-circle icon-white"></i> Masuk</a>
+                                </li>
+                            </ul>
+                            
+                        </div>
+
+                                
+
+                        
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Begin page content -->
+
+            <div id="div_block_banner" class="main_container">
+                
+
+<div class="jumbotron masthead">
+    <div class="container">
+        <h1>CodeSaya</h1>
+        <p>Belajar coding dengan menyenangkan secara interaktif.</p>
+        <p>
+        <a href="/belajar/" class="btn btn-primary btn-large">Mulai Sekarang</a>
+        </p>
+        <ul class="masthead-links">
+            <li>
+            <a href="/javascript/">JavaScript</a>
+            </li>
+            <!--<li>
+            <a href="/html-css">HTML & CSS</a>
+            </li>-->
+            <li>
+            <a href="/php/">PHP</a>
+            </li>
+            <li>
+            <a href="/git/">Git</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="bs-docs-social" style="background-color:#efefef">
+    <div class="container">
+        <ul class="bs-docs-social-buttons">
+                    <li>
+                    <a class="popup_window" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcodesaya.com%2F" target="_blank"><img style="" src="/static/img/bagikan_fb.png"></a>
+                    </li>
+                    <li>
+                    <a class="popup_window" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fcodesaya.com%2F&text=Saya%20merekomendasikan%20CodeSaya%20untuk%20belajar%20coding!%20Belajar%20%26%20Diskusi%20PHP%2C%20JS%2C%20Git%2C%20dll." target="_blank"><img style="" src="/static/img/tw_tweet2.png"></a>
+                    </li>
+                    <li>
+                    <a class="popup_window" href="https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fcodesaya.com%2F&screen_name=codesaya" target="_blank"><img style="" src="/static/img/tw_follow2.png"></a>
+                    </li>
+                    <li>
+                    <a class="popup_window" href="https://plus.google.com/share?url=http%3A%2F%2Fcodesaya.com%2F" target="_blank"><img style="" src="/static/img/bagikan_gp.png"></a>
+                    </li>
+
+ 
+        </ul>
+    </div>
+</div>
+
+
+                <div class="container">
+                    <div id="div_block_main_content" class="row">
+                        
+
+<div class="marketing">
+    <h1>Memperkenalkan CodeSaya.</h1>
+    <p class="marketing-byline">Teman baru anda dalam belajar coding.</p>
+    <div class="row-fluid">
+        <div class="span4">
+            <img class="marketing-img" src="/static/img/home-study.jpeg">
+            <h2>Platform Belajar</h2>
+            <p>CodeSaya adalah wadah bagi para insan yang mendambakan untuk menjadi mahir dan lihai dalam <a href="/php/">PHP</a>, <a href="/javascript/">JavaScript</a>, dan lain-lain.</p>
+        </div>
+        <div class="span4">
+            <img class="marketing-img" src="/static/img/home-interactive.jpeg">
+            <h2>Coding Interaktif</h2>
+            <p>Setelah mempelajari suatu topik, anda akan menghadapi sebuah soal coding yang jawabannya langsung diperiksa oleh software.</p>
+        </div>
+        <div class="span4">
+            <img class="marketing-img" src="/static/img/home-badge.jpeg">
+            <h2>Lencana Keren</h2>
+            <p>Dapatkan <a href="/lencana/pasukan-khusus-php/14/">lencana keren</a> dari kami. Lencana yang didapat bisa anda sombongkan ke Facebook atau bandingkan dengan <a href="/terbaik/">coder terbaik</a> kami.</p>
+        </div>
+    </div>
+
+    <hr class="soften">
+
+    <center>
+            <a href="https://www.digitalocean.com/?refcode=e2473f219e83">
+            <img class="marketing-img" src="/static/img/digitaloceanbanner.png">
+            </a>
+    </center>
+
+    <div class="row-fluid">
+        <div class="span6">
+            <h1>Kenapa belajar Coding?</h1>
+            <p class="marketing-byline">Siapapun anda, sebaiknya anda belajar coding.</p>
+            <br/>
+            <div id="myCarousel" class="carousel slide">
+                <ol class="carousel-indicators">
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <p class="marketing-quote">"Saya pikir semua orang harus belajar coding, karena coding mengajarkan anda berpikir."</p>
+                        <p class="marketing-byline">Steve Jobs, pendiri Apple.</p>
+                    </div>
+                    <div class="item">
+                        <p class="marketing-quote">"Kebijaksanaan di Facebook adalah meng-hire coder berkualitas sebanyak mungkin. Tapi pasar saat ini tidak menyediakan stock yang cukup."</p>
+                        <p class="marketing-byline">Mark Zuckerberg, pendiri Facebook.</p>
+                    </div>
+                    <div class="item">
+                        <p class="marketing-quote">"Anda tidak harus menjadi jenius untuk bisa coding. Pertambahan, pengurangan... itu sudah cukup!"</p>
+                        <p class="marketing-byline">Bill Gates, pendiri Microsoft.</p>
+                    </div>
+                    <div class="item">
+                        <p class="marketing-quote">"Entah untuk mengungkap rahasia alam semesta atau mencari kerja di abad 21, pemograman computer adalah kecakapan yang penting."</p>
+                        <p class="marketing-byline">Stephen Hawking, cendekiawan fisika.</p>
+                    </div>
+                    <div class="item">
+                        <p class="marketing-quote">"Coding sangat penting apabila anda memikirkan tentang masa depan. Dengan semakin banyaknya telepon dan computer yang dirakit."</p>
+                        <p class="marketing-byline">Chris Bosh, pemain NBA, Miami Heat.</p>
+                    </div>
+                    <div class="item">
+                        <p class="marketing-quote">"Coders yang hebat adalah rock star masa kini! Titik!"</p>
+                        <p class="marketing-byline">Will.i.am, anggota Black Eyed Peas.</p>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
+        </div>
+
+        <div class="span6">
+            <h1>CodeSaya di Media</h1>
+            <p class="marketing-byline">Media-media yang telah mengulas CodeSaya.</p>
+            <br/>
+            <a alt="CodeSaya: Belajar Coding via Online" href="http://selular.id/news/startup/2015/10/codesaya-belajar-coding-via-online/">
+                <img width="140" title="CodeSaya: Belajar Coding via Online" src="/static/img/selular_logo.png"></a>
+            <a alt="CodeSaya Wadahi Pembelajar Pemrograman dengan Metode Belajar Interaktif" href="https://dailysocial.net/post/codesaya">
+                <img width="140" title="CodeSaya Wadahi Pembelajar Pemrograman dengan Metode Belajar Interaktif" src="/static/img/dailysocial_logo.jpg" ></a>
+            <a alt="Belajar Pemrograman Interaktif Berbahasa Indonesia di CodeSaya" href="http://www.codepolitan.com/belajar-pemrograman-interaktif-berbahasa-indonesia-di-codesaya/">
+                <img width="140" title="Belajar Pemrograman Interaktif Berbahasa Indonesia di CodeSaya" src="/static/img/codepolitan_logo.png"></a>
+        </div>
+    </div>
+
+    <hr class="soften">
+
+    <center>
+            <a href="https://www.digitalocean.com/?refcode=e2473f219e83">
+            <img class="marketing-img" src="/static/img/digitaloceanbanner2.png">
+            </a>
+    </center>
+
+    <div class="row-fluid">
+
+        <div class="span4">
+                <h2>Coder Terbaik Minggu Ini:</h2>
+            <p class="marketing-byline">Coder yang paling jenius.</p>
+            <div class="container-fluid">
+            
+
+                    <a href="/u/DennyS/"><img style="height:100px;width:100px;" class="img-polaroid" src="/media/mugshots/b8a5f4f48f.jpg" /></a>
+                    <p>
+                        <span class="profile_name"><a href="/u/DennyS/">DennyS</a></span>
+                        <span class="profile_point label label-info">131</span>
+                        <span class="profile_point label ">0</span>
+                        <br/> 
+                        
+                            <i class="icon-map-marker"></i> Langkat
+                        
+                    </p>
+            </div>
+        </div>
+
+        <div class="span4">
+                <h2>Coder Terpopuler Minggu Ini:</h2>
+            <p class="marketing-byline">Coder yang banyak membantu coder lain.</p>
+            <div class="container-fluid">
+                    <a href="/u/mystogan/"><img style="height:100px;width:100px;" class="img-polaroid" src="/media/mugshots/dac822bce6.jpg" /></a>
+                    <p>
+                        <span class="profile_name"><a href="/u/mystogan/">mystogan</a></span>
+                        <span class="profile_point label label-warning">192</span>
+                        <span class="profile_point label label-info">94</span>
+                        <br/> 
+                        
+                            <i class="icon-map-marker"></i> Jakarta Selatan
+                        
+                    </p>
+            </div>
+        </div>
+
+        <div class="span4">
+                <h2>Rookie Terjago Hari Ini:</h2>
+            <p class="marketing-byline">Coder dengan masa depan yang cerah.</p>
+            <div class="container-fluid">
+                    <a href="/u/aziszcoder/"><img style="height:100px;width:100px;" class="img-polaroid" src="http://www.gravatar.com/avatar/4b26dae179a2751c0365aab17fad1942?s=270&amp;d=monsterid" /></a>
+                    <p>
+                        <span class="profile_name"><a href="/u/aziszcoder/">aziszcoder</a></span>
+                        <span class="profile_point label label-success">28</span>
+                        <span class="profile_point label ">0</span>
+                        <br/> 
+                        
+
+                    </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12 center">
+            </br>
+            <p class="marketing-byline">
+
+            Keren! 8 menit yang lalu, <a href="/u/nando123/">nando123</a> baru saja jadi 
+            <a href="/lencana/prajurit/1/">Prajurit</a>!
+
+            <br/>Untuk melihat coder-coder terbaik, lihat di <a href="/terbaik/">sini</a>.
+            </p>
+        </div>
+    </div>
+
+    <hr class="soften">
+    <div class="row-fluid">
+        <div class="span6">
+            <h1>Sahabat CodeSaya</h1>
+            <p class="marketing-byline">Website yang memiliki visi dan misi yang sama.</p>
+            <br/>
+            <a alt="Sekolah Koding" href="http://sekolahkoding.com/">
+                <img width="200" title="Sekolah Koding" src="/static/img/sekolahcoding_logo.png"></a>
+        </div>
+        <div class="span6">
+            <h1>Artikel Terakhir</h1>
+            <p class="marketing-byline">Artikel seputar dunia coding & IT dari anggota CodeSaya.</p>
+            <div class="single_post " style="text-align:left;">
+
+                <h2><a href="/a/penasaran-akan-programmingd-ydlqrjvgdy/">
+                                Penasaran akan programming..:D</a></h2>
+                <div class="blog_content">
+                
+                <p>Pernakah anda membayangkan bagaimana sih rasanya mahir dalam programming? Bisa melakukan coding dengan mudah dan ...</p>
+                
+                </div> 
+                 <a href="/a/penasaran-akan-programmingd-ydlqrjvgdy/">Lanjutkan membaca</a>
+
+            </div>
+        </div> 
+        <br/>
+    </div> 
+    <hr class="soften">
+    <br/>
+</div>
+
+ <!-- main content block -->
+
+                    </div> <!-- row -->
+                </div> <!-- container -->
+            </div> <!-- main container -->
+            <div id="push"></div>
+        </div> <!-- wrapper -->
+
+        <!-- Footer -->
+        <div id="footer">
+            <footer class="footer">
+            
+            <div class="container">
+                <p><a href="/">CodeSaya</a> adalah tempat belajar coding yang mudah, menyenangkan, dan gratis.</p>
+                <p>Dirakit oleh <a href="/u/ganis/">coder Indonesia</a> dengan <a href="http://python.org/">bantuan</a> <a href="http://djangoproject.com/">open</a> <a href="http://getbootstrap.com/">source</a>
+                dan berumah di <a href="https://www.digitalocean.com/?refcode=e2473f219e83" target="_blank">DigitalOcean</a>.</p>
+                <ul class="footer-links">
+                    <li><a href="/blog/">Blog</a></li>
+                    <li class="muted">&middot;</li>
+                    <li><a href="https://www.facebook.com/codesayadotcom">Facebook</a></li>
+                    <li class="muted">&middot;</li>
+                    <li><a href="https://twitter.com/CodeSaya">Twitter</a></li>
+
+                </ul>
+            </div>
+            
+            <footer class="footer footer_below">
+            <div class="container">
+                <ul class="bs-docs-social-buttons">
+                    <li>
+                    <a class="popup_window" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcodesaya.com%2F" ><img style="" src="/static/img/bagikan_fb.png"></a>
+                    </li>
+                    <li>
+                    <a class="popup_window" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fcodesaya.com%2F&text=Saya%20merekomendasikan%20CodeSaya%20untuk%20belajar%20coding!%20Belajar%20%26%20Diskusi%20PHP%2C%20JS%2C%20Git%2C%20dll." ><img style="" src="/static/img/tw_tweet2.png"></a>
+                    </li>
+                    <li>
+                    <a class="popup_window" href="https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fcodesaya.com%2F&screen_name=codesaya" ><img style="" src="/static/img/tw_follow2.png"></a>
+                    </li>
+                    <li>
+                    <a class="popup_window" href="https://plus.google.com/share?url=http%3A%2F%2Fcodesaya.com%2F" ><img style="" src="/static/img/bagikan_gp.png"></a>
+                    </li>
+
+
+                </ul>
+            </div>
+            </footer>
+            </footer>
+        </div>
+
+<script type="text/javascript" src="/static/js/base.js"></script>
+<script type="text/javascript" src="/static/js/showads.js"></script>
+<script>
+
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+
+$(window).bind("load", function() {
+
+                if( window.canRunAds === undefined ){
+                    $('a.ads_image').removeClass('hidden');
+                }
+
+                if ( $('.sticky').length>0 && !isMobile.any() ) {
+
+                var stickyTop = $('.sticky').offset().top; // returns number
+                $(window).scroll(function(){ // scroll event 
+                        var windowTop = $(window).scrollTop(); // returns number
+                        if (stickyTop < windowTop) {
+                        $('.sticky').css({ position: 'fixed', top: 0 });
+                        }
+                        else {
+                        $('.sticky').css('position','static');
+                        }
+                        });
+                }
+
+        });
+$(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip(); 
+});
+
+</script>
+
+
+<script type="text/javascript">
+    $('.carousel').carousel({
+        interval: 6000
+        })
+</script>
+
+
+
+
+
+
+</body>
+</html>
+<!-- 0gnbDliaXtwTL9l6tx60GwOfF -->

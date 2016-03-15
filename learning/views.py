@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf 
 from learning.models import Bab, Materi, Soal, Jawaban, UserProfileKey
-from learning.forms import BabForm, UserForm, UserProfileForm, RegistrationForm
+from learning.forms import BabForm, UserForm, RegistrationForm
 from django.template import RequestContext
 from django.core.mail import send_mail
 import hashlib, datetime, random
@@ -35,7 +35,7 @@ def register_user(request):
             #Get user by username
             user=User.objects.get(username=username)
 
-            # Create and save user profile                                                                                                                                  
+            # Create and save user profile                                                                                                       
             new_profile = UserProfileKey(user=user, activation_key=activation_key, 
                 key_expires=key_expires)
             new_profile.save()
@@ -74,7 +74,7 @@ def register_confirm(request, activation_key):
     user.save()
     return render_to_response('user_profile/confirm.html')
 
-#Aktivasi akun baru
+#Halaman Sukses Buat Akun
 def register_success(request):    
     
     return render_to_response('user_profile/success.html')
@@ -138,7 +138,7 @@ def register(request):
             'learning/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
-#login
+#Halaman Log in
 def user_login(request):
 
     # If the request is a HTTP POST, try to pull out the relevant information.
@@ -167,7 +167,7 @@ def user_login(request):
                 return HttpResponseRedirect('/learning/')
             else:
                 # An inactive account was used - no logging in!
-                return HttpResponse("Akun Be-Py anda tidak aktif")
+                return HttpResponse("Akun Be-Py yang Anda masukkan belum / tidak aktif")
         else:
             # Bad login details were provided. So we can't log the user in.
             print "Invalid login details: {0}, {1}".format(username, password)
@@ -199,7 +199,7 @@ from django.contrib.auth import logout
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required
 
-#log out
+#Log out
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
     logout(request)
@@ -207,7 +207,7 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect('/learning/')
 
-#index
+#Halaman User (index)
 def index(request):
     try:
         all_soal = Soal.objects.all().count()
@@ -225,26 +225,23 @@ def index(request):
 
     return render(request, 'learning/index.html', context_dict)
 
+#Halaman Tentang
 def about(request):
-
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
     context_dict = {'boldmessage': "I am bold font from the context"}
-
-    # Return a rendered response to send to the client.
-    # We make use of the shortcut function to make our lives easier.
-    # Note that the first parameter is the template we wish to use.
-
     return render(request, 'learning/about.html', context_dict)
 
-#bab_view
+#Halaman Bantuan
+def bantuan(request):
+    return render(request, 'learning/bantuan.html')
+
+#Halaman Bab
 def bab_view(request):
     bab_list= Bab.objects.all()
     context_dict={"bab":bab_list}
 
     return render(request, 'learning/bab.html', context_dict)
 
-#daftar materi
+#Halaman Materi
 def list_materi(request, bab_slug):
     bab = Bab.objects.get(slug=bab_slug)
     materi_list = Materi.objects.filter(bab=bab)
@@ -277,7 +274,7 @@ def tambah_bab(request):
     # Render the form with error messages (if any).
     return render(request, 'learning/tambah_bab.html', {'form': form})
 
-#soal
+#Halaman Soal
 def soal_view(request, materi_slug, bab_slug, soal_id):
     nav = Materi.objects.get(slug=materi_slug)
     soal = Soal.objects.get(id=soal_id)
@@ -292,7 +289,7 @@ def soal_view(request, materi_slug, bab_slug, soal_id):
 
     return render(request, 'learning/soal.html', context_dict)
 
-#user
+#Halaman Profil Saya
 def user_dashboard(request):
     user = request.user
     try:
@@ -305,61 +302,6 @@ def user_dashboard(request):
     
     context_dict={"user":user, "progress":progress}
     return render(request, 'learning/user.html', context_dict)
-
-#ubah_profil
-def ubah_profil(request):
-    # If it's a HTTP POST, we're interested in processing form data.
-    if request.method == 'POST':
-        # Attempt to grab information from the raw form information.
-        # Note that we make use of both UserForm and UserProfileForm.
-        user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
-
-        # If the two forms are valid...
-        if user_form.is_valid() and profile_form.is_valid():
-            # Save the user's form data to the database.
-            user = user_form.save()
-
-            # Now we hash the password with the set_password method.
-            # Once hashed, we can update the user object.
-            user.set_password(user.password)
-            user.save()
-
-            # Now sort out the UserProfile instance.
-            # Since we need to set the user attribute ourselves, we set commit=False.
-            # This delays saving the model until we're ready to avoid integrity problems.
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
-            # Did the user provide a profile picture?
-            # If so, we need to get it from the input form and put it in the UserProfile model.
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-
-            # Now we save the UserProfile model instance.
-            profile.save()
-
-            # Update our variable to tell the template registration was successful.
-            registered = True
-
-        # Invalid form or forms - mistakes or something else?
-        # Print problems to the terminal.
-        # They'll also be shown to the user.
-        else:
-            print user_form.errors, profile_form.errors
-    else:
-	user = User.objects.get(username=request.user)
-	# user_profile = UserProfile.objects.get(user=user)
-        user_form = UserForm(instance=user)
-        profile_form = UserProfileForm(instance=user_profile)
-
-    return render(request,
-            'learning/ubah_profil.html',
-            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
-
-    
-
-    
 
 #ajax cek jawaban
 def cek_jawaban(request):

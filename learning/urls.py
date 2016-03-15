@@ -13,7 +13,8 @@ urlpatterns = patterns('',
 	url(r'^restricted/', views.restricted, name='restricted'),
 	url(r'^logout/$', views.user_logout, name='logout'),
 	url(r'^dashboard/$', views.user_dashboard, name='dashboard'),
-	url(r'^ubah_profil/$', views.ubah_profil, name='ubah_profil'),
+	#url(r'^ubah_profil/$', views.ubah_profil, name='ubah_profil'),
 	url(r'^about/$', views.about, name='about'),
+	url(r'^bantuan/$', views.bantuan, name='bantuan'),
 )
        

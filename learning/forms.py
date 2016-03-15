@@ -1,5 +1,5 @@
 from django import forms
-from learning.models import Bab, Materi, UserProfile
+from learning.models import Bab, Materi
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -41,10 +41,10 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 
-class UserProfileForm(forms.ModelForm):
+'''class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('deskripsi_diri', 'picture')
+        fields = ('deskripsi_diri', 'picture')'''
 
 
 class BabForm(forms.ModelForm):

@@ -16,7 +16,7 @@ class UserProfileKey(models.Model):
         verbose_name_plural=u'User profiles'
 
 #User profile
-class UserProfile(models.Model):
+''' class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
 
@@ -26,7 +26,7 @@ class UserProfile(models.Model):
 
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):
-        return self.user.username
+        return self.user.username '''
 
 
 #Bab

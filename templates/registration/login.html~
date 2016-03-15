@@ -27,8 +27,9 @@
 </div>
 
 	<script>
-		
-		window.location.href = '/learning/';
+		{% if user.is_authenticated %}
+			window.location.href = '/learning/';
+		{% endif %}
 
 	</script>
 {% endblock %}

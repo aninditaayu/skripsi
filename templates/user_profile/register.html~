@@ -2,41 +2,41 @@
 
 {% block body_block %}            
 <form class="form-signup" action="/sign_up/" method="post">{% csrf_token %}
-    <h2>Create your account</h2>
+    <h2>Daftar</h2>
     <div class="fieldWrapper">
-        <label>First name</label><br>
+        <label>Nama Depan:</label><br>
         {{ form.first_name }}
     </div>    
     <br>
     <div class="fieldWrapper">
-        <label>Last name</label><br>
+        <label>Nama Belakang:</label><br>
         {{ form.last_name }}
     </div>    
     <br>
     <div class="fieldWrapper">    
         {{ form.email.errors }}            
-        <label>E-mail</label><br>
+        <label>E-mail:</label><br>
         {{ form.email }}
     </div>    
     <br>
     <div class="fieldWrapper">
     {{form.errors.values.0}}                
-        <label>Username</label><br>
+        <label>Username:</label><br>
         {{ form.username }}
     </div>
     <br>
     <div class="fieldWrapper">        
         {{form.errors.values.1}}            
-        <label>Password</label><br>                    
+        <label>Password:</label><br>                    
         {{ form.password1 }}
     </div>
     <br>
     <div class="fieldWrapper">           
-        <label>Password again</label><br>
+        <label>Ulangi Password:</label><br>
         {{ form.password2 }}
     </div>            
     <br></br>
-    <input type="submit" name="submit" class="btn btn-primary" value="Create account">
+    <input type="submit" name="submit" class="btn btn-primary" value="Buat Akun">
 </form>
 
 {% endblock %}

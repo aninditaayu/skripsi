@@ -33,13 +33,12 @@
                 {% if user.is_authenticated %}
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/learning/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li><a href="/learning/"><span class="glyphicon glyphicon-home"></span> Beranda</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ user.username }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/learning/dashboard">Kemampuan Saya</a></li>
-                                <li><a href="#">Lihat Profil</a></li>
-                                <li><a href="#">Ubah Profil</a></li>   <!-- /learning/ubah_profil -->
+                                <li><a href="/learning/dashboard">Profil Saya</a></li>
+				<li><a href="/learning/bantuan"></span>Bantuan</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/learning/about">Tentang Be-Py</a></li>
                                 <li><a href="{% url 'auth_logout' %}?next=/learning/">Keluar</a></li>
@@ -53,7 +52,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{% url 'daftar' %}"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
                         <li><a href="{% url 'auth_login' %}">Masuk</a></li>
-                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'about' %}">Tentang</a></li>
+			<li><a href="{% url 'bantuan' %}">Bantuan</a></li>
                     </ul>
                 </div>
                 {% endif %}

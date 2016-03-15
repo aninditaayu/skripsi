@@ -6,17 +6,19 @@
 {% block title %}{{ nama }}{% endblock %}
 
 {% block body_block %}
-    <h1>{{ nama }}</h1>
+    <center><h1>BAB YANG DIPELAJARI</h1></center>
+    
 {% if bab %}
-            <ul>
-                {% for b in bab %}
-                <li>
-                    <h2><a href="/learning/bab/{{ b.slug }}/">{{ b.nama }}</a></h2>
-		<p> {{ b.deskripsi | safe}} 	</p>
-               </li> <!-- kasih href buat link-in bab-->
-              {% endfor %}
-            </ul>
+	<ul>
+	{% for b in bab %}
+		<li>
+			<h2><a href="/learning/bab/{{ b.slug }}/">{{ b.nama }}</a></h2>
+			<p> {{ b.deskripsi | safe}} 	</p>
+			<hr style = "border-color: rgb(255, 208, 64)">	 
+                </li> 
+        {% endfor %}
+        </ul>
         {% else %}
-            <strong>Tidak ada bab yang tersedia.</strong>
+                <strong>Tidak ada bab yang tersedia.</strong>
         {% endif %}
 {% endblock %}

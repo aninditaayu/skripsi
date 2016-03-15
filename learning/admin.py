@@ -1,5 +1,5 @@
 from django.contrib import admin
-from learning.models import Bab, Materi, Soal, Jawaban, UserProfile, UserProfileKey
+from learning.models import Bab, Materi, Soal, Jawaban, UserProfileKey
 
 
 
@@ -9,7 +9,7 @@ class BabAdmin(admin.ModelAdmin):
 class MateriAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('judul_materi',)}
 
-admin.site.register(UserProfile)
+#admin.site.register(UserProfile)
 admin.site.register(UserProfileKey)
 admin.site.register(Bab, BabAdmin)
 admin.site.register(Materi, MateriAdmin)
