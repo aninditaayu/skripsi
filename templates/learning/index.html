@@ -5,7 +5,7 @@
 
 {% block title %} Be-Py | Beranda {% endblock %}
 {% block body_block %}
-    
+
         {% if user.is_authenticated %}
 	<h1>Selamat Datang.. {{ user.username }}!</h1>
 	<div class="row">
@@ -18,7 +18,7 @@
 			<h4>{{progress|floatformat:-2}}% Complete</h4>
 		</div>
     </div>
-    
+
 	{% else %}
 	<h1>Selamat Datang di Be-Py</h1>
 	{% endif %}
@@ -32,7 +32,7 @@
 	{% endif %}
 	<a href="/accounts/logout/">Keluar</a><br />
 	{% else %}
-	<a href="/accounts/register/">Daftar Sekarang!</a><br />
+	<a href="/sign_up/">Daftar Sekarang!</a><br />
 	<a href="/accounts/login/">Masuk</a><br />
 	{% endif %}
 	<a href="/learning/about/">About</a><br/>
