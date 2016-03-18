@@ -20,37 +20,36 @@
 	{% endfor %}
 	</ol>
 	<a href="/learning/bab/{{ soal.materi.bab.slug }}">Kembali</a>
- </div>
+  </div>
   <div class = "col-lg-4" style="overflow-y:scroll; height:500px;">
-
-
         {% if soal %}
-                {% with soal as s %}
-                    <h2>{{ s.judul_soal }}</h2>
-		<p> {{ s.deskripsi_soal|safe }}</p>
-		<h4>Instruksi</h4>
-		<p> {{ s.instruksi|safe }}</p>
+        {% with soal as s %}
+        <h2>{{ s.judul_soal }}</h2>
+		<p>{{ s.deskripsi_soal|safe }}</p>
+		<h4><b>Instruksi</b></h4>
+		<p>{{ s.instruksi|safe }}</p>
 
-	<div class="panel panel-default">
-	    <div class="panel-heading" role="tab" id="headingThree">
-	      <h4 class="panel-title">
-		<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-		Petunjuk
-		</a>
+  <div class="panel panel-default">
+	  <div class="panel-heading" role="tab" id="headingThree">
+		  <h4 class="panel-title">
+			  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				Petunjuk
+			  </a>
 	      </h4>
-	    </div>
-	    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	  </div>
+	  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 	      <div class="panel-body">
 			   <p> {{ s.hint|safe }}</p>
 	      </div>
-	    </div>
-	</div>	
+	  </div>
+  </div>	
         {% endwith %}
         {% else %}
             <strong>Tidak ada materi yang tersedia.</strong>
         {% endif %}
         
         <script type="text/javascript"> 
+			
 // output functions are configurable.  This one just appends some text
 // to a pre element.
 function outf(text) { 
@@ -62,6 +61,7 @@ function builtinRead(x) {
             throw "File not found: '" + x + "'";
     return Sk.builtinFiles["files"][x];
 }
+
 // Here's everything you need to run a python program in skulpt
 // grab the code from your textarea
 // get a reference to your pre element for output
@@ -118,13 +118,11 @@ function cleanit() {
 </script>
 </div> 
 <div class="col-lg-6" style="margin-bottom:100px;">
-        <h3>Coba di Sini:</h3> 
-        
+        <h3>Coba di Sini:</h3>         
         <form> 
 			<textarea id="yourcode" cols="67" rows="10">{{isi_console}}</textarea><br /> 
 			<button type="button" onclick="runit()">Periksa</button> 
 			<button Type="button" onclick="cleanit()">Ulangi</button>
-			<button Type="button" onclick="">Berikutnya</button>
 		</form> <br>
 		<pre id="output" ></pre>
 		<div id="response" class="alert alert-warning alert-dismissible fade in" role="alert" style="dispay:none"> 

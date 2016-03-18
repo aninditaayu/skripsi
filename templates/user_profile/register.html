@@ -2,7 +2,7 @@
 
 {% block body_block %}            
 <form class="form-signup" action="/sign_up/" method="post">{% csrf_token %}
-    <h2>Daftar</h2>
+    <h1>Daftar</h1>
     <div class="fieldWrapper">
         <label>Nama Depan:</label><br>
         {{ form.first_name }}

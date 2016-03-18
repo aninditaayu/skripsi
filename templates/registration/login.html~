@@ -15,12 +15,12 @@
                 {% csrf_token %}
                 {{ form.as_p }}
 
-                <input type="submit" value="Masuk" />
+                <input class="btn btn-primary" type="submit" value="Masuk" />
                 <input type="hidden" name="next" value="{{ next }}" />
         </form>
         </div>
         <div class="col-xs-8 col-sm-12">
-        <p>Belum buat akun?<a href="{% url 'registration_register' %}">Daftar Sekarang!</a></p>
+        <p>Belum buat akun?<a href="{% url 'daftar' %}">Daftar Sekarang!</a></p>
         </div>
       </div>
     </div>

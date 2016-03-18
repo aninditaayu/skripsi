@@ -8,11 +8,11 @@
     
         {% if user.is_authenticated %}
 	<center>
-	<h1>Selamat Datang.. {{ user.username }}!</h1>
+	<h2>Selamat Datang.. {{ user.username }}</h2>
 	<div class="row">
 		<div class = "col-lg-12">
                         
-			<h2>Progress Anda:</h2>
+			<h1>Progress Anda:</h1>
 			<div class="progress">
 				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
 				</div>
@@ -23,23 +23,23 @@
         </div>
 	{% else %}
 	<center>
-	<h1>Selamat Datang di Be-Py</h1>
-	<h4>Langkah awal belajar Python</h4>
+	<div class ="jumbotron">
+	    <div class ="container">
+		<h1 style="color:#08298A">Selamat Datang di Be-Py</h1>
+		<h4>Langkah awal belajar Python</h4>
+	    </div>
+	</div>
 	</center>	
 	{% endif %}
-
 
 	{% if user.is_authenticated %}
 	{% if progress > 0 %}
 	<center>
-	<a href="/learning/bab/" class="btn btn-primary">Lanjutkan</a> 
-	<input type="submit" name="submit" class="btn btn-primary" href="/learning/bab/" value="Lanjutkan">        
-	<br /><a href="/learning/bab/">Lanjutkan</a><br />
+	<br /><a href="/learning/bab/" class="btn btn-primary">Lanjutkan</a>    
 	{% else %}
 	</center>
 	<center>
-	<input type="submit" name="submit" class="btn btn-primary" href="/learning/bab/" value="Mulai Sekarang">
-	<br /><a href="/learning/bab/">Mulai Sekarang</a><br />
+	<br /><a href="/learning/bab/" class="btn btn-primary">Mulai Sekarang</a>
 	</center>	
 	{% endif %}
 	<center>
@@ -47,10 +47,39 @@
 	</center>	
 	{% else %}
 	<center>
-	<br>
-	<a href="{% url 'daftar' %}"><b>Daftar Sekarang</b></a><br />
-	<a href="/accounts/login/"><b>Masuk</b></a><br />
-	<hr style = "border-color: rgb(255, 208, 64)">
-	</center>	
+    	<br /><a href="/accounts/login/" class="btn btn-primary btn-lg">Saya ingin belajar</a> <br />
+	<br><hr style = "border-color: rgb(255, 208, 64)">
+	</center>
+
+	<!-- Kolom -->
+	<div class="container">
+    	<div id="div_block_main_content" class="row">
+                        
+
+	<div class="marketing">
+		<div class="row-fluid">
+			<div class="span4">
+				<center><img class="marketing-img" src="/static/img/logo-python.png" width="150px" height="150px">
+				<h1>Belajar Python</h1>
+				<p>Be-Py merupakan wadah bagi Anda yang tertarik dan ingin belajar pemrograman dasar Python. Anda akan mempelajari 5 buah bab yang terdiri dari 1. Pengenalan Python, 2. Dasar-dasar Python, 3. <i>List</i>,<i>Tupple</i>,<i>Set</i>, dan <i>Dictionaries</i>, 4. Perulangan Pengendalian Kondisi, dan 5. Modul Pemrograman Python.</p></center>
+			</div>
+			<div class="span4">
+				<center><img class="marketing-img" src="/static/img/coding.png" width="150px" height="150px">
+				<h1>Pemrograman Interaktif</h1>
+				<p>Setelah mempelajari suatu materi, Anda akan mengerjakan sebuah program sederhana yang jawabannya langsung diperiksa kebenarannya.</p></center>
+			</div>
+			<div class="span4">
+				<center><img class="marketing-img" src="/static/img/progress.png" width="150px" height="150px">
+				<h1>Progress Bar</h1>
+				<p>Perkembangan belajar Anda dapat Anda ketahui melalui <i>Progress Bar</i>. Perkembangan Anda akan direpresentasikan dalam bentuk persentase. Persentase akan meningkat apabila Anda telah berhasil mengerjakan program dengan benar.</p></center>
+			</div>
+		</div>
+	</div>
+	
+	</div>
+	</div>	
 	{% endif %}
+	
+
 {% endblock %}
+	

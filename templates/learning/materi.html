@@ -5,18 +5,20 @@
 {% block title %}{{ judul_materi }}{% endblock %}
 
 {% block body_block %}
-    <center><h1>KUMPULAN MATERI</h1></center>
+    <center>
+		<h1>KUMPULAN MATERI</h1>
+	</center>
 {% if materi %}
-            <ul>
-                {% for m in materi %}
-                <li>
-                    <h2><a href="/learning/bab/{{m.bab.slug}}/materi/{{ m.slug }}/{% with m.materi.all|first as pertama %}{{pertama.id}}{% endwith %}/">{{ m.judul_materi }}</a></h2>
-		<p> {{ m.deskripsi|safe }} 	</p>
-		<hr style = "border-color: rgb(255, 208, 64)">
-               </li>
-              {% endfor %}
-            </ul>
-	    <a href="/learning/bab/{{ materi.bab.slug }}">Kembali</a>
+	<ul>
+		{% for m in materi %}
+		<li>
+			<h2><a href="/learning/bab/{{m.bab.slug}}/materi/{{ m.slug }}/{% with m.materi.all|first as pertama %}{{pertama.id}}{% endwith %}/">{{ m.judul_materi }}</a></h2>
+			<p> {{ m.deskripsi|safe }} 	</p>
+			<hr style = "border-color: rgb(255, 208, 64)">
+        </li>
+        {% endfor %}
+    </ul>
+		<a href="/learning/bab/{{ materi.bab.slug }}">Kembali</a>
         {% else %}
             <strong>Tidak ada materi yang tersedia.</strong>
         {% endif %}

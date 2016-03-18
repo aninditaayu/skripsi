@@ -4,6 +4,8 @@
 <center>
 	<h1>Email Terverifikasi</h1>
 	<h4>Alamat email Anda telah berhasil diverifikasi. Terima kasih!</h4>
+	<br>
+	<center><a href="/accounts/login/" class="btn btn-primary btn-lg">Mulai Belajar</a> <br /></center>
 </center>
 
 {% endblock %}

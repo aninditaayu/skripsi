@@ -14,8 +14,8 @@
         <form method="post" action="">
                 {% csrf_token %}
                 {{ form.as_p }}
-
-                <input type="submit" value="Masuk" />
+		<br>
+                <input class="btn btn-primary" type="submit" value="Masuk" />
                 <input type="hidden" name="next" value="{{ next }}" />
         </form>
         </div>

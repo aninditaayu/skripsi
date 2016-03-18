@@ -1,4 +1,3 @@
-
 {% extends 'learning/base.html' %}
 
 {% load staticfiles %}
@@ -6,7 +5,9 @@
 {% block title %}{{ nama }}{% endblock %}
 
 {% block body_block %}
-    <center><h1>BAB YANG DIPELAJARI</h1></center>
+    <center>
+		<h1>BAB YANG DIPELAJARI</h1>
+	</center>
     
 {% if bab %}
 	<ul>
@@ -15,7 +16,7 @@
 			<h2><a href="/learning/bab/{{ b.slug }}/">{{ b.nama }}</a></h2>
 			<p> {{ b.deskripsi | safe}} 	</p>
 			<hr style = "border-color: rgb(255, 208, 64)">	 
-                </li> 
+        </li> 
         {% endfor %}
         </ul>
         {% else %}

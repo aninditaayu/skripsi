@@ -48,12 +48,16 @@ body {
     margin-top: 40px;
 }
 
-h1,
-h3 {
-    font-family: Rokkitt, serif;
+h1, h2, 
+h3, h4, h5, p, label {
+    font-family: Rokkit , serif;
     font-weight: 100;
-    font-size: 30px;
+    
     color: #000000;
+}
+
+label{
+	font-size: 17px;
 }
 
 
@@ -241,6 +245,15 @@ footer p {
     z-index: 1;
     color: #FFF;
     text-align: center;
+}
+
+p {
+	font-size: 17px;
+}
+
+ul li p {
+	font-size: 18px;
+
 }
 
 .jumbotron {

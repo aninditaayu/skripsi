@@ -11,10 +11,11 @@ from django.template import RequestContext
 from django.core.mail import send_mail
 import hashlib, datetime, random
 from django.utils import timezone
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
 
 #Register user
 def register_user(request):
@@ -194,12 +195,11 @@ def some_view(request):
 def restricted(request):
     return HttpResponse("Setelah Anda masuk, Anda bisa melihat halaman ini!")
 
-from django.contrib.auth import logout
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required
 
-#log out
+#Log out
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
     logout(request)
@@ -207,7 +207,7 @@ def user_logout(request):
     # Take the user back to the homepage.
     return HttpResponseRedirect('/learning/')
 
-#index
+#Halaman User (index)
 def index(request):
     try:
         all_soal = Soal.objects.all().count()
@@ -274,7 +274,7 @@ def tambah_bab(request):
     # Render the form with error messages (if any).
     return render(request, 'learning/tambah_bab.html', {'form': form})
 
-#soal
+#Halaman Soal
 def soal_view(request, materi_slug, bab_slug, soal_id):
     nav = Materi.objects.get(slug=materi_slug)
     soal = Soal.objects.get(id=soal_id)
@@ -289,7 +289,7 @@ def soal_view(request, materi_slug, bab_slug, soal_id):
 
     return render(request, 'learning/soal.html', context_dict)
 
-#user
+#Halaman Profil Saya
 def user_dashboard(request):
     user = request.user
     try:

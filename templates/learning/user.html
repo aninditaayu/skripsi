@@ -1,12 +1,13 @@
 {% extends "learning/base.html" %}
 
-
 {% block body_block %}
 {% if user.is_authenticated %}
+<center>
 <h1>Profil ({{ user.username }})..</h1>
+</center>
 	<div class="row">
 		<div class = "col-lg-6">
-			<h2>Kemampuan Saya:</h2>
+			<center></center><h2>Kemampuan Saya:</h2></center>
 			<div class="progress">
 				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
 				</div>
@@ -15,6 +16,8 @@
 		</div>
     </div>
 {% endif %}
-	<p>Username: {{user.username}}</p>
-        <p>Email saya: {{user.email}}</p>  
+<hr style = "border-color: rgb(255, 208, 64)">
+<p><h4>Username:</h4> {{user.username}}</p>
+<p><h4>Email saya:</h4> {{user.email}}</p> 
+ 
 {% endblock %}

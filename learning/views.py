@@ -11,10 +11,11 @@ from django.template import RequestContext
 from django.core.mail import send_mail
 import hashlib, datetime, random
 from django.utils import timezone
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
 
 #Register user
 def register_user(request):
@@ -104,20 +105,6 @@ def register(request):
             user.set_password(user.password)
             user.save()
 
-            # Now sort out the UserProfile instance.
-            # Since we need to set the user attribute ourselves, we set commit=False.
-            # This delays saving the model until we're ready to avoid integrity problems.
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
-            # Did the user provide a profile picture?
-            # If so, we need to get it from the input form and put it in the UserProfile model.
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-
-            # Now we save the UserProfile model instance.
-            profile.save()
-
             # Update our variable to tell the template registration was successful.
             registered = True
 
@@ -194,7 +181,6 @@ def some_view(request):
 def restricted(request):
     return HttpResponse("Setelah Anda masuk, Anda bisa melihat halaman ini!")
 
-from django.contrib.auth import logout
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required
