@@ -8,13 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--Fonts-->
-    <link href='https://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+    <link href='{% static 'css/bootstrap.min.css' %}' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <!--CSS-->
+    <link rel="stylesheet" href="{% static 'css/custom.css'%}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
-    <link rel="stylesheet" href="{% static 'css/custom.css'%}">
-    <link rel="stylesheet" href="{% static 'css/login.css'%}"> {% block head_block %}{% endblock %}
+
+    <link rel="stylesheet" href="{% static 'css/login.css'%}"> 
+	{% block head_block %}{% endblock %}
 </head>
 
 
@@ -28,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/learning/"><span class="glyphicon glyphicon-search"></span> Be-Py</a>
+                    <a class="navbar-brand" href="/learning/">Be-Py</a>
                 </div>
                 {% if user.is_authenticated %}
                 <div class="collapse navbar-collapse" id="myNavbar">
@@ -74,7 +76,7 @@
                     <li><a href="#"><i class="fa fa-linkedin fa-2x"></i></a></li>
                     <li><a href="http://www.twitter.com/ditcay"><i class="fa fa-twitter fa-2x"></i></a></li>
                 </ul>
-                <p style="color:white">©Be-Py by Anindita Ayu pratiwi</p>
+                <p style="color:white">©Be-Py</p>
             </div>
         </footer>
     </div>

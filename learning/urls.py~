@@ -16,6 +16,5 @@ urlpatterns = patterns('',
 	#url(r'^ubah_profil/$', views.ubah_profil, name='ubah_profil'),
 	url(r'^about/$', views.about, name='about'),
 	url(r'^bantuan/$', views.bantuan, name='bantuan'),
-	url('/accounts/login/$', views.user_login, name='masuk')
 )
        

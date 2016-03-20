@@ -41,12 +41,6 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 
-'''class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ('deskripsi_diri', 'picture')'''
-
-
 class BabForm(forms.ModelForm):
     nama = forms.CharField(max_length=128, help_text="Silahkan masukkan Bab")
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)

@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 #Register user
@@ -47,7 +48,7 @@ def register_user(request):
             email_body = "Hey {}, terima kasih telah mendaftar. Untuk aktivasi akun Anda, harap klik link di bawah ini dalam waktu kurang dari \
             48jam http://{}/confirm/{}".format(username, host, activation_key)
 
-            send_mail(email_subject, email_body, 'be-py@alviandk.com',
+            send_mail(email_subject, email_body, 'be-py@be-py.com',
                 [email], fail_silently=False)
 
             return HttpResponseRedirect('/register_success')
@@ -221,6 +222,7 @@ def bantuan(request):
     return render(request, 'learning/bantuan.html')
 
 #Halaman Bab
+@login_required(login_url='/accounts/login/')
 def bab_view(request):
     bab_list= Bab.objects.all()
     context_dict={"bab":bab_list}
@@ -228,6 +230,7 @@ def bab_view(request):
     return render(request, 'learning/bab.html', context_dict)
 
 #Halaman Materi
+@login_required(login_url='/accounts/login/')
 def list_materi(request, bab_slug):
     bab = Bab.objects.get(slug=bab_slug)
     materi_list = Materi.objects.filter(bab=bab)
@@ -235,32 +238,9 @@ def list_materi(request, bab_slug):
 
     return render(request, 'learning/materi.html', context_dict)
 
-#menambahkan bab
-def tambah_bab(request):
-    # A HTTP POST?
-    if request.method == 'POST':
-        form = BabForm(request.POST)
-
-        # Have we been provided with a valid form?
-        if form.is_valid():
-            # Save the new category to the database.
-            form.save(commit=True)
-
-            # Now call the index() view.
-            # The user will be shown the homepage.
-            return index(request)
-        else:
-            # The supplied form contained errors - just print them to the terminal.
-            print form.errors
-    else:
-        # If the request was not a POST, display the form to enter details.
-        form = BabForm()
-
-    # Bad form (or form details), no form supplied...
-    # Render the form with error messages (if any).
-    return render(request, 'learning/tambah_bab.html', {'form': form})
 
 #Halaman Soal
+@login_required(login_url='/accounts/login/')
 def soal_view(request, materi_slug, bab_slug, soal_id):
     nav = Materi.objects.get(slug=materi_slug)
     soal = Soal.objects.get(id=soal_id)
@@ -276,6 +256,7 @@ def soal_view(request, materi_slug, bab_slug, soal_id):
     return render(request, 'learning/soal.html', context_dict)
 
 #Halaman Profil Saya
+@login_required(login_url='/accounts/login/')
 def user_dashboard(request):
     user = request.user
     try:
@@ -312,10 +293,10 @@ def cek_jawaban(request):
 		kunci=soal.kunci_jawaban.replace(u'\r',u'')
    		kunci=u'{}\n'.format(kunci)
 		if kunci == jawaban.jawaban :
-			response_jawaban = "Jawaban Anda benar! :D"
+			response_jawaban = "Jawaban Anda benar!"
 			jawaban.sudah_benar = True
 		else:
-			response_jawaban = "Coba lagi. Jawaban Anda masih salah."
+			response_jawaban = "Periksa kembali sintaks Anda. Jawaban Anda masih salah."
 			jawaban.sudah_benar = False
 		print jawaban.jawaban
 		print soal.kunci_jawaban

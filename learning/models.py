@@ -15,19 +15,6 @@ class UserProfileKey(models.Model):
     class Meta:
         verbose_name_plural=u'User profiles'
 
-#User profile
-''' class UserProfile(models.Model):
-    # This line is required. Links UserProfile to a User model instance.
-    user = models.OneToOneField(User)
-
-    # The additional attributes we wish to include.
-    deskripsi_diri = models.TextField(blank=True)
-    picture = models.ImageField(upload_to='profile_images', blank=True)
-
-    # Override the __unicode__() method to return out something meaningful!
-    def __unicode__(self):
-        return self.user.username '''
-
 
 #Bab
 class Bab(models.Model):
@@ -50,7 +37,6 @@ class Materi(models.Model):
     bab = models.ForeignKey(Bab, related_name="bab")
     judul_materi = models.CharField(max_length=128)
     deskripsi = models.TextField(null=True)
-    views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):

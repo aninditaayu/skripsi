@@ -27,7 +27,14 @@
 	<div class ="jumbotron">
 	    <div class ="container">
 		<h1 style="color:#08298A">Selamat Datang di Be-Py</h1>
-		<h4>Langkah awal belajar Python</h4>
+		
+		<h3><i>Langkah awal belajar Python</i></h3>
+		<center>
+		<a href="/accounts/login/" class="btn btn-primary btn-lg">
+			Saya ingin belajar</a>
+		<br>
+		<hr style = "border-color: rgb(255, 208, 64)"><br>
+		</center>
 	    </div>
 	</div>
 	</center>	
@@ -49,22 +56,17 @@
 	{% endif %}
 	
 	{% else %}
-	<center>
-		<a href="/accounts/login/" class="btn btn-primary btn-lg">
-			Saya ingin belajar</a> <br />
-		<br>
-		<hr style = "border-color: rgb(255, 208, 64)">
-	</center>
+
 
 	<!-- Kolom -->
 	<div class="container">
     	<div id="div_block_main_content" class="row">
 			<div class="marketing">
 				<div class="row-fluid">
-					<div class="span4">
+					<div class="col-xs-12 col-sm-6 col-md-4">
 						<center><img class="marketing-img" 
-						src="/static/img/logo-python.png" width="150px" 
-						height="150px">
+						src="{% static 'img/logo-python.png' %}" width="130px" 
+						height="130px">
 						<h1>Belajar Python</h1>
 						<p>Be-Py merupakan wadah bagi Anda yang tertarik
 						 dan ingin belajar pemrograman dasar Python. 
@@ -75,10 +77,10 @@
 						 4. Perulangan Pengendalian Kondisi, dan 
 						 5. Modul Pemrograman Python.</p></center>
 					</div>
-					<div class="span4">
+					<div class="col-xs-12 col-sm-6 col-md-4">
 						<center><img class="marketing-img" 
-						src="/static/img/coding.png" width="150px" 
-						height="150px">
+						src="{% static 'img/coding.png' %}" width="130px" 
+						height="130px">
 							<h1>Pemrograman Interaktif</h1>
 							<p>Setelah mempelajari suatu materi, Anda 
 							akan mengerjakan sebuah program sederhana 
@@ -86,10 +88,10 @@
 							kebenarannya.</p>
 						</center>
 					</div>
-					<div class="span4">
+					<div class="col-xs-12 col-sm-6 col-md-4">
 						<center><img class="marketing-img" 
-						src="/static/img/progress.png" width="150px" 
-						height="150px">
+						src="{% static 'img/progress.png' %}" width="130px" 
+						height="130px">
 							<h1>Progress Bar</h1>
 							<p>Perkembangan belajar Anda dapat Anda 
 							ketahui melalui <i>Progress Bar</i>. 
