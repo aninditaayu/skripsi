@@ -4,7 +4,7 @@ import re
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
-from django.core.context_processors import csrf 
+from django.core.context_processors import csrf
 from learning.models import Bab, Materi, Soal, Jawaban, UserProfileKey
 from learning.forms import BabForm, UserForm, RegistrationForm
 from django.template import RequestContext
@@ -25,20 +25,20 @@ def register_user(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         args['form'] = form
-        if form.is_valid(): 
+        if form.is_valid():
             form.save()  # save user to database if form is valid
 
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
-            salt = hashlib.sha1(str(random.random())).hexdigest()[:5]            
-            activation_key = hashlib.sha1(salt+email).hexdigest()            
+            salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+            activation_key = hashlib.sha1(salt+email).hexdigest()
             key_expires = datetime.datetime.today() + datetime.timedelta(2)
 
             #Get user by username
             user=User.objects.get(username=username)
 
-            # Create and save user profile                                                                                                       
-            new_profile = UserProfileKey(user=user, activation_key=activation_key, 
+            # Create and save user profile
+            new_profile = UserProfileKey(user=user, activation_key=activation_key,
                 key_expires=key_expires)
             new_profile.save()
             host=request.META['HTTP_HOST']
@@ -77,8 +77,8 @@ def register_confirm(request, activation_key):
     return render_to_response('user_profile/confirm.html')
 
 #Halaman Sukses Buat Akun
-def register_success(request):    
-    
+def register_success(request):
+
     return render_to_response('user_profile/success.html')
 
 
@@ -203,7 +203,7 @@ def index(request):
         progress = float(jawaban_user)/float(all_soal)*100
     except:
         progress = ''
-    
+
     context_dict = {'progress': progress}
 
     # Return a rendered response to send to the client.
@@ -244,6 +244,9 @@ def list_materi(request, bab_slug):
 def soal_view(request, materi_slug, bab_slug, soal_id):
     nav = Materi.objects.get(slug=materi_slug)
     soal = Soal.objects.get(id=soal_id)
+    all_soal = Soal.objects.all()
+    nomor_soal = list(all_soal.values_list('id', flat=True)).index(soal.id) + 1
+    total_soal = all_soal.count()
     try:
         jawaban = Jawaban.objects.get(soal=soal, user=request.user)
 	isi_console = jawaban.console_user
@@ -251,7 +254,7 @@ def soal_view(request, materi_slug, bab_slug, soal_id):
 		isi_console=""
     except:
         isi_console = soal.isi_console
-    context_dict={"soal":soal, "nav":nav, "request":request, "isi_console":isi_console}
+    context_dict={"soal":soal, "nomor_soal":nomor_soal,"total_soal":total_soal, "nav":nav, "request":request, "isi_console":isi_console}
 
     return render(request, 'learning/soal.html', context_dict)
 
@@ -266,7 +269,7 @@ def user_dashboard(request):
         progress = float(jawaban_user)/float(all_soal)*100
     except:
         progress = ''
-    
+
     context_dict={"user":user, "progress":progress}
     return render(request, 'learning/user.html', context_dict)
 
@@ -280,16 +283,16 @@ def cek_jawaban(request):
 		response_data = {}
 		user = User.objects.get(id=int(user_id))
 		soal = Soal.objects.get(id=int(soal_id))
-			
+
 		try:
 			jawaban = Jawaban.objects.get(soal=soal, user=user)
 			jawaban.jawaban= jawaban_text
 		        jawaban.console_user = console_user
 		except:
 			jawaban = Jawaban.objects.create(soal=soal, user=user, jawaban=jawaban_text, console_user=console_user)
-		
+
 		jawaban.kali_jawab += 1
-		
+
 		kunci=soal.kunci_jawaban.replace(u'\r',u'')
    		kunci=u'{}\n'.format(kunci)
 		if kunci == jawaban.jawaban :
@@ -301,12 +304,12 @@ def cek_jawaban(request):
 		print jawaban.jawaban
 		print soal.kunci_jawaban
 
-		jawaban.save()	
+		jawaban.save()
 		response_data['response_jawaban'] = response_jawaban
 		response_data['jawaban'] = jawaban.jawaban
 		response_data['jawaban_html'] = jawaban_text
 		response_data['kunci'] = soal.kunci_jawaban
-		
+
 		return HttpResponse(json.dumps(response_data),
 							content_type="application/json")
 	else:

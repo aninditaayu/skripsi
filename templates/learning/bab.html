@@ -8,15 +8,16 @@
     <center>
 		<h1>BAB YANG DIPELAJARI</h1>
 	</center>
-    
+
 {% if bab %}
 	<ul>
 	{% for b in bab %}
 		<li>
-			<h2><a href="/learning/bab/{{ b.slug }}/">{{ b.nama }}</a></h2>
+			<h2>{{ b.nama }}</h2>
 			<p> {{ b.deskripsi | safe}} 	</p>
-			<hr style = "border-color: rgb(255, 208, 64)">	 
-        </li> 
+			<h5><a href="/learning/bab/{{ b.slug }}/"><i class="fa fa-slideshare"> Mulai Belajar</i></a> <a><i class="fa fa-download" style='margin-left:10px'> Download Materi</i></a></h5>
+			<hr style = "border-color: rgb(255, 208, 64)">
+        </li>
         {% endfor %}
         </ul>
         {% else %}
