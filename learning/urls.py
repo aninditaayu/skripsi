@@ -5,8 +5,9 @@ from learning import views
 urlpatterns = patterns('',
         url(r'^$', views.index, name='index'),
         url(r'^bab/$', views.bab_view, name='bab'),
-        url(r'^bab/(?P<bab_slug>[\w\-]+)/$', views.list_materi, name='materi'), 
-        url(r'^bab/(?P<bab_slug>[\w\-]+)/materi/(?P<materi_slug>[\w\-]+)/(?P<soal_id>[\w\-]+)/$', views.soal_view, name='soal'), 
+        url(r'^bab/(?P<bab_slug>[\w\-]+)/$', views.list_materi, name='materi'),
+        url(r'^download-bab/(?P<bab_slug>[\w\-]+)/$', views.download_materi, name='download_materi'),
+        url(r'^bab/(?P<bab_slug>[\w\-]+)/materi/(?P<materi_slug>[\w\-]+)/(?P<soal_id>[\w\-]+)/$', views.soal_view, name='soal'),
         url(r'^cek_jawaban/$', views.cek_jawaban, name='cek_jawaban'),
 	url(r'^login/$', views.user_login, name='login'),
 	url(r'^restricted/', views.restricted, name='restricted'),
@@ -16,4 +17,4 @@ urlpatterns = patterns('',
 	url(r'^about/$', views.about, name='about'),
 	url(r'^bantuan/$', views.bantuan, name='bantuan'),
 )
-       
+

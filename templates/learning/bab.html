@@ -15,7 +15,7 @@
 		<li>
 			<h2>{{ b.nama }}</h2>
 			<p> {{ b.deskripsi | safe}} 	</p>
-			<h5><a href="/learning/bab/{{ b.slug }}/"><i class="fa fa-slideshare"> Mulai Belajar</i></a> <a><i class="fa fa-download" style='margin-left:10px'> Download Materi</i></a></h5>
+			<h5><a href="/learning/bab/{{ b.slug }}/"><i class="fa fa-slideshare"> Mulai Belajar</i></a> <a href="/learning/download-bab/{{ b.slug }}/"><i class="fa fa-download" style='margin-left:10px'> Download Materi</i></a></h5>
 			<hr style = "border-color: rgb(255, 208, 64)">
         </li>
         {% endfor %}

@@ -1,6 +1,10 @@
 import json
+import mimetypes
 import re
+import os
 
+
+from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
@@ -17,6 +21,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 #Register user
 def register_user(request):
@@ -317,3 +323,14 @@ def cek_jawaban(request):
             json.dumps({"nothing to see": "this isn't happening"}),
             content_type="application/json"
         )
+
+#Download Materi
+@login_required(login_url='/accounts/login/')
+def download_materi(request, bab_slug):
+    filename='/home/bepy/skripsi/static/pdf/{}.pdf'.format(bab_slug)
+    wrapper      = FileWrapper(open(filename))
+    content_type = mimetypes.guess_type(filename)[0]  # Use mimetypes to get file type
+    response     = HttpResponse(wrapper,content_type=content_type)
+    response['Content-Length']      = os.path.getsize(filename)
+    response['Content-Disposition'] = "attachment; filename=%s.pdf" %  bab_slug
+    return response
