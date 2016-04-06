@@ -1,25 +1,32 @@
+import cStringIO as StringIO
+import datetime
+import hashlib
 import json
 import mimetypes
-import re
 import os
+import random
+import re
+
+from cgi import escape
+from xhtml2pdf import pisa
 
 
-from django.core.servers.basehttp import FileWrapper
-from django.shortcuts import render, render_to_response, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
-from django.core.context_processors import csrf
-from learning.models import Bab, Materi, Soal, Jawaban, UserProfileKey
-from learning.forms import BabForm, UserForm, RegistrationForm
-from django.template import RequestContext
-from django.core.mail import send_mail
-import hashlib, datetime, random
-from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.core.context_processors import csrf
+from django.core.mail import send_mail
+from django.core.servers.basehttp import FileWrapper
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, render_to_response, get_object_or_404
+from django.template import Context, RequestContext
+from django.template.loader import get_template
+from django.utils import timezone
+
+from learning.models import Bab, Materi, Soal, Jawaban, UserProfileKey
+from learning.forms import BabForm, UserForm, RegistrationForm
+
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -324,13 +331,28 @@ def cek_jawaban(request):
             content_type="application/json"
         )
 
+
+def render_to_pdf(template_src, context_dict):
+    template = get_template(template_src)
+    context = Context(context_dict)
+    html  = template.render(context)
+    result = StringIO.StringIO()
+
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("ISO-8859-1", "ignore")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
+
+
 #Download Materi
 @login_required(login_url='/accounts/login/')
 def download_materi(request, bab_slug):
-    filename='/home/bepy/skripsi/static/pdf/{}.pdf'.format(bab_slug)
-    wrapper      = FileWrapper(open(filename))
-    content_type = mimetypes.guess_type(filename)[0]  # Use mimetypes to get file type
-    response     = HttpResponse(wrapper,content_type=content_type)
-    response['Content-Length']      = os.path.getsize(filename)
-    response['Content-Disposition'] = "attachment; filename=%s.pdf" %  bab_slug
-    return response
+    bab = Bab.objects.get(slug=bab_slug)
+    return render_to_pdf(
+            'learning/download-materi.html',
+            {
+                'pagesize':'A4',
+                'bab': bab,
+            }
+        )
+

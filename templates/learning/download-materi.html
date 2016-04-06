@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Materi {{bab.nama}}</title>
+        <style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 1cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 9cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>{{bab.nama}}</h1>
+            {{bab.deskripsi|safe}}
+
+            {% for materi in bab.bab.all %}
+                <h3>{{materi.judul_materi}}</h3>
+                {{materi.deskripsi|safe}}
+
+                {% for soal in materi.materi.all %}
+                    <h4>{{soal.judul_soal}}</h4>
+                    {{soal.deskripsi_soal|safe}}
+
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div id="footerContent">
+            {%block page_foot%}
+                Page <pdf:pagenumber>
+            {%endblock%}
+        </div>
+    </body>
+</html>
