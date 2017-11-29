@@ -245,7 +245,7 @@ def bab_view(request):
 #Halaman Materi
 @login_required(login_url='/accounts/login/')
 def list_materi(request, bab_slug):
-    bab = Bab.objects.get(slug=bab_slug)
+    bab = get_object_or_404(Bab, slug=bab_slug)
     materi_list = Materi.objects.filter(bab=bab)
     context_dict={"materi":materi_list}
 
